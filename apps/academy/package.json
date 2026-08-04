@@ -1,0 +1,24 @@
+{
+  "name": "@taijifu/academy",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "next": "^16.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "@taijifu/canon": "workspace:*",
+    "@taijifu/content": "workspace:*",
+    "@taijifu/evidence": "workspace:*",
+    "@taijifu/db": "workspace:*",
+    "@taijifu/auth": "workspace:*",
+    "@taijifu/ai": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.0"
+  }
+}

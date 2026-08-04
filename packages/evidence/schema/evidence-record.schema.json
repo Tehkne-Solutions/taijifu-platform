@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Taijifu Evidence Record",
+  "type": "object",
+  "required": ["id", "createdAt", "kind", "status", "canonicalEntityId", "beltId", "body"],
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "kind": { "enum": ["reflection", "practice-note", "checkpoint", "path-checkpoint", "traversal-submission"] },
+    "status": { "enum": ["draft", "recorded", "ready-for-review", "submitted"] },
+    "canonicalEntityId": { "type": "string", "minLength": 1 },
+    "pathId": { "type": "string" },
+    "beltId": { "const": "BELT-WHITE" },
+    "body": { "type": "string" },
+    "metadata": { "type": "object" }
+  },
+  "additionalProperties": false
+}

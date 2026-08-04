@@ -1,0 +1,3 @@
+import { setAttendance } from "@taijifu/db/dojo";
+import { requireDojoRole } from "../../lib/server";
+export async function POST(request:Request){const body=await request.json() as {dojoId?:string;sessionId?:string;userId?:string;status?:"expected"|"present"|"absent"|"excused"};const dojoId=String(body.dojoId??"");const auth=await requireDojoRole(request,dojoId,["instructor","admin"]);if("error" in auth)return auth.error;if(!body.sessionId||!body.userId||!body.status)return Response.json({error:"missing-attendance-fields"},{status:400});await setAttendance(body.sessionId,body.userId,body.status);return Response.json({ok:true});}
