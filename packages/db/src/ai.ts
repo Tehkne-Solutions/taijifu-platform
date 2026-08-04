@@ -31,14 +31,14 @@ export async function createAiGeneration(input:{
 
 export async function completeAiGeneration(input:{
   id:string;answer:string;mode:string;model?:string;canonRelease:string;
-  officialPositionAvailable:boolean;sourceRefs:unknown[];usage:Record<string,unknown>;estimatedCostMicrousd:number;
+  officialPositionAvailable:boolean;sourceRefs:unknown[];usage:unknown;estimatedCostMicrousd:number;
 }) {
   const sql = db();
   const [row] = await sql`
     UPDATE ai_generations SET
       status='complete', answer=${input.answer}, mode=${input.mode}, model=${input.model ?? null},
       canon_release=${input.canonRelease}, official_position_available=${input.officialPositionAvailable},
-      source_refs=${sql.json(input.sourceRefs as any)}, usage=${sql.json(input.usage as any)},
+      source_refs=${sql.json(input.sourceRefs as any)}, usage=${sql.json((input.usage ?? {}) as any)},
       estimated_cost_microusd=${input.estimatedCostMicrousd}, completed_at=now()
     WHERE id=${input.id}
     RETURNING id,status,completed_at::text`;
