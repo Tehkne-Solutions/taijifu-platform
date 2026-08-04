@@ -36,9 +36,17 @@ export interface ContextPack {
   systemPolicy: string;
 }
 
+export interface AiUsage {
+  inputTokens: number;
+  outputTokens: number;
+  totalTokens: number;
+}
+
 export interface TaijifuAiAnswer {
   answer: string;
   mode: "model" | "grounded-extract" | "no-canon-position";
   context: ContextPack;
   model?: string;
+  usage: AiUsage;
+  estimatedCostMicrousd: number;
 }
