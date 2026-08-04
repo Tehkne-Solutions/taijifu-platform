@@ -17,4 +17,6 @@ The model is optional. Without `TAIJIFU_AI_MODEL` plus AI Gateway credentials, t
 
 AI never mutates Canon, belts, credentials, authorizations, Safety decisions, or clinical Return to Practice states.
 
+Repository CI is bootstrapped from the default branch and validates structural gates, typecheck, and monorepo build for pull requests.
+
 Signature: Tehkné Solutions
