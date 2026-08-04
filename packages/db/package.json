@@ -1,12 +1,13 @@
 {
   "name":"@taijifu/db",
-  "version":"0.3.0",
+  "version":"0.4.0",
   "private":true,
   "type":"module",
   "exports":{
     ".":"./src/index.ts",
     "./dojo":"./src/dojo.ts",
-    "./ai":"./src/ai.ts"
+    "./ai":"./src/ai.ts",
+    "./community":"./src/community.ts"
   },
   "dependencies":{"postgres":"^3.4.7"}
 }
