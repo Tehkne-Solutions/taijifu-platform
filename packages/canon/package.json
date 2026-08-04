@@ -7,7 +7,7 @@
     "./data/belts": "./data/belts.json",
     "./data/bases": "./data/bases.json",
     "./data/paths": "./data/paths.json",
-    "./data/nuclei": "./data/nuclei.json",
+    "./data/nuclei": "./src/nuclei.ts",
     "./data/release": "./data/release.json",
     ".": "./src/index.ts"
   },
