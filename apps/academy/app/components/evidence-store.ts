@@ -157,10 +157,11 @@ export function submitWhiteTraversal(reflection: string) {
   const ready = WHITE_PATH_IDS.every((id) => state.pathCheckpoints[id]) && WHITE_NUCLEUS_IDS.every((id) => isNucleusComplete(state, id));
   if (!ready) return { ok: false as const, reason: "requirements-incomplete" };
   if (!reflection.trim()) return { ok: false as const, reason: "reflection-required" };
-  state.traversal = { status: "submitted", submittedAt: new Date().toISOString(), reflection: reflection.trim() };
+  const submittedAt = new Date().toISOString();
+  state.traversal = { status: "submitted", submittedAt, reflection: reflection.trim() };
   state.evidence.unshift({
     id: crypto.randomUUID(),
-    createdAt: state.traversal.submittedAt,
+    createdAt: submittedAt,
     kind: "traversal-submission",
     status: "submitted",
     canonicalEntityId: "BELT-WHITE",
