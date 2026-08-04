@@ -1,0 +1,23 @@
+{
+  "name": "@taijifu/dojo",
+  "version": "0.2.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "next": "^16.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "@taijifu/canon": "workspace:*",
+    "@taijifu/db": "workspace:*",
+    "@taijifu/auth": "workspace:*",
+    "@taijifu/evidence": "workspace:*",
+    "@taijifu/ai": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.0"
+  }
+}

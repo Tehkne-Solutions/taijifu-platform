@@ -1,0 +1,1 @@
+export const metadata={title:'Taijifu Admin',description:'Canon, conteúdo e governança'}; export default function RootLayout({children}:Readonly<{children:React.ReactNode}>){return <html lang="pt-BR"><body>{children}</body></html>}

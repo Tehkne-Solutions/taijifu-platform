@@ -1,0 +1,12 @@
+{
+  "name": "@taijifu/ai",
+  "version": "0.7.0",
+  "private": true,
+  "type": "module",
+  "exports": { ".": "./src/index.ts" },
+  "dependencies": {
+    "@taijifu/canon": "workspace:*",
+    "@taijifu/content": "workspace:*",
+    "ai": "^7.0.40"
+  }
+}
