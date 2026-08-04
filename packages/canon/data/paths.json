@@ -1,0 +1,322 @@
+[
+  {
+    "id": "PATH-C01",
+    "code": "C01",
+    "order": 1,
+    "name": "Presença e Segurança",
+    "beltId": "BELT-WHITE",
+    "function": "Estabelecer presença corporal, consentimento, Safety e condições mínimas para aprender.",
+    "nucleusIds": ["NUC-N001","NUC-N002","NUC-N003","NUC-N004"],
+    "status": "current"
+  },
+  {
+    "id": "PATH-C02",
+    "code": "C02",
+    "order": 2,
+    "name": "Movimento Fundamental",
+    "beltId": "BELT-WHITE",
+    "function": "Construir base motora, alinhamento, locomoção, queda e recuperação.",
+    "nucleusIds": ["NUC-N005","NUC-N006","NUC-N007","NUC-N008"],
+    "status": "current"
+  },
+  {
+    "id": "PATH-C03",
+    "code": "C03",
+    "order": 3,
+    "name": "Relação Inicial",
+    "beltId": "BELT-WHITE",
+    "function": "Introduzir distância, guarda, contato cooperativo e primeira integração das Bases.",
+    "nucleusIds": ["NUC-N009","NUC-N010","NUC-N011","NUC-N012"],
+    "status": "current"
+  },
+  {
+    "id": "PATH-C04",
+    "code": "C04",
+    "order": 4,
+    "name": "Distância e Espaço",
+    "beltId": "BELT-YELLOW",
+    "function": "Perceber zonas, alcance, entradas, saídas, ângulos e rotas ambientais.",
+    "nucleusIds": ["NUC-N013","NUC-N014","NUC-N015","NUC-N016"],
+    "status": "current"
+  },
+  {
+    "id": "PATH-C05",
+    "code": "C05",
+    "order": 5,
+    "name": "Leitura e Timing",
+    "beltId": "BELT-YELLOW",
+    "function": "Ler sinais, ritmo, janelas de ação, iniciativa e reação.",
+    "nucleusIds": ["NUC-N017","NUC-N018","NUC-N019","NUC-N020"],
+    "status": "current"
+  },
+  {
+    "id": "PATH-C06",
+    "code": "C06",
+    "order": 6,
+    "name": "Estrutura e Intenção",
+    "beltId": "BELT-YELLOW",
+    "function": "Perceber apoio, direção, tensão, pressão e organização estrutural do parceiro.",
+    "nucleusIds": ["NUC-N021","NUC-N022","NUC-N023","NUC-N024"],
+    "status": "current"
+  },
+  {
+    "id": "PATH-C07",
+    "code": "C07",
+    "order": 7,
+    "name": "Mecânica e Estrutura",
+    "beltId": "BELT-ORANGE",
+    "function": "Compreender cadeias cinéticas, alavancas, geração de força e falhas mecânicas.",
+    "nucleusIds": ["NUC-N025","NUC-N026","NUC-N027","NUC-N028"],
+    "status": "current"
+  },
+  {
+    "id": "PATH-C08",
+    "code": "C08",
+    "order": 8,
+    "name": "Função e Ferramenta",
+    "beltId": "BELT-ORANGE",
+    "function": "Separar função de técnica e selecionar ferramentas por custo, risco e eficiência.",
+    "nucleusIds": ["NUC-N029","NUC-N030","NUC-N031","NUC-N032"],
+    "status": "current"
+  },
+  {
+    "id": "PATH-C09",
+    "code": "C09",
+    "order": 9,
+    "name": "Defesa e Contramedida",
+    "beltId": "BELT-ORANGE",
+    "function": "Compreender proteção, reposicionamento, escape, reversão e contramedidas.",
+    "nucleusIds": ["NUC-N033","NUC-N034","NUC-N035","NUC-N036"],
+    "status": "current"
+  },
+  {
+    "id": "PATH-C10",
+    "code": "C10",
+    "order": 10,
+    "name": "Entrada e Iniciativa",
+    "beltId": "BELT-RED",
+    "function": "Transformar leitura em ação por abertura, mobilidade, contato e decisão sob pressão.",
+    "nucleusIds": ["NUC-N037","NUC-N038","NUC-N039","NUC-N040"],
+    "status": "current"
+  },
+  {
+    "id": "PATH-C11",
+    "code": "C11",
+    "order": 11,
+    "name": "Aplicação e Controle",
+    "beltId": "BELT-RED",
+    "function": "Manifestar força proporcional e controle diante de oposição crescente.",
+    "nucleusIds": ["NUC-N041","NUC-N042","NUC-N043","NUC-N044"],
+    "status": "current"
+  },
+  {
+    "id": "PATH-C12",
+    "code": "C12",
+    "order": 12,
+    "name": "Pressão e Resolução",
+    "beltId": "BELT-RED",
+    "function": "Preservar função sob resistência, encadear respostas e encerrar com saída e reflexão.",
+    "nucleusIds": ["NUC-N045","NUC-N046","NUC-N047","NUC-N048"],
+    "status": "current"
+  },
+  {
+    "id": "PATH-C13",
+    "code": "C13",
+    "order": 13,
+    "name": "Transições",
+    "beltId": "BELT-GREEN",
+    "function": "Conectar Tai, Ji e Fu e recuperar função durante mudanças de estado.",
+    "nucleusIds": ["NUC-N049","NUC-N050","NUC-N051","NUC-N052"],
+    "status": "current"
+  },
+  {
+    "id": "PATH-C14",
+    "code": "C14",
+    "order": 14,
+    "name": "Cadeias Funcionais",
+    "beltId": "BELT-GREEN",
+    "function": "Conectar defesa, contato, queda, solo, retorno e saída em cadeias coerentes.",
+    "nucleusIds": ["NUC-N053","NUC-N054","NUC-N055","NUC-N056"],
+    "status": "current"
+  },
+  {
+    "id": "PATH-C15",
+    "code": "C15",
+    "order": 15,
+    "name": "Integração de Zonas",
+    "beltId": "BELT-GREEN",
+    "function": "Atravessar zonas funcionais sem reiniciar a lógica da arte.",
+    "nucleusIds": ["NUC-N057","NUC-N058","NUC-N059","NUC-N060"],
+    "status": "current"
+  },
+  {
+    "id": "PATH-C16",
+    "code": "C16",
+    "order": 16,
+    "name": "Integração das Bases",
+    "beltId": "BELT-GREEN",
+    "function": "Conectar pares de Bases e alcançar síntese contextual das quatro.",
+    "nucleusIds": ["NUC-N061","NUC-N062","NUC-N063","NUC-N064"],
+    "status": "current"
+  },
+  {
+    "id": "PATH-C17",
+    "code": "C17",
+    "order": 17,
+    "name": "Variabilidade e Alternativas",
+    "beltId": "BELT-CYAN",
+    "function": "Expandir repertório por famílias de solução, bilateralidade, variação e restrições.",
+    "nucleusIds": ["NUC-N065","NUC-N066","NUC-N067","NUC-N068"],
+    "status": "current"
+  },
+  {
+    "id": "PATH-C18",
+    "code": "C18",
+    "order": 18,
+    "name": "Transferência e Adaptação",
+    "beltId": "BELT-CYAN",
+    "function": "Transferir competências entre parceiros, ambientes, recursos e Capacity States.",
+    "nucleusIds": ["NUC-N069","NUC-N070","NUC-N071","NUC-N072"],
+    "status": "current"
+  },
+  {
+    "id": "PATH-C19",
+    "code": "C19",
+    "order": 19,
+    "name": "Artes Cinéticas Integradas",
+    "beltId": "BELT-CYAN",
+    "function": "Expandir movement literacy por locomoção, eixo, ground movement, quedas, obstáculos e ritmo.",
+    "nucleusIds": ["NUC-N073","NUC-N074","NUC-N075","NUC-N076"],
+    "status": "current"
+  },
+  {
+    "id": "PATH-C20",
+    "code": "C20",
+    "order": 20,
+    "name": "Contexto, Objetos e Ambiente",
+    "beltId": "BELT-CYAN",
+    "function": "Estudar de forma controlada como objetos, alcance, terceiros e ambiente alteram decisões e saída.",
+    "nucleusIds": ["NUC-N077","NUC-N078","NUC-N079","NUC-N080"],
+    "status": "current"
+  },
+  {
+    "id": "PATH-C21",
+    "code": "C21",
+    "order": 21,
+    "name": "Robustez",
+    "beltId": "BELT-BLUE",
+    "function": "Preservar função diante de degradação controlada e reconhecer limites operacionais.",
+    "nucleusIds": ["NUC-N081","NUC-N082","NUC-N083","NUC-N084"],
+    "status": "current"
+  },
+  {
+    "id": "PATH-C22",
+    "code": "C22",
+    "order": 22,
+    "name": "Pressão e Fadiga",
+    "beltId": "BELT-BLUE",
+    "function": "Sustentar técnica, decisão, respiração e Safety quando a capacidade degrada.",
+    "nucleusIds": ["NUC-N085","NUC-N086","NUC-N087","NUC-N088"],
+    "status": "current"
+  },
+  {
+    "id": "PATH-C23",
+    "code": "C23",
+    "order": 23,
+    "name": "PFI Aplicado",
+    "beltId": "BELT-BLUE",
+    "function": "Integrar força, potência, capacidade aeróbica, coordenação e programação ao percurso marcial.",
+    "nucleusIds": ["NUC-N089","NUC-N090","NUC-N091","NUC-N092"],
+    "status": "current"
+  },
+  {
+    "id": "PATH-C24",
+    "code": "C24",
+    "order": 24,
+    "name": "Continuidade e Recuperação",
+    "beltId": "BELT-BLUE",
+    "function": "Sustentar desenvolvimento por recuperação de falhas, posição, capacidade e competência ao longo do tempo.",
+    "nucleusIds": ["NUC-N093","NUC-N094","NUC-N095","NUC-N096"],
+    "status": "current"
+  },
+  {
+    "id": "PATH-C25",
+    "code": "C25",
+    "order": 25,
+    "name": "Estratégia Pessoal",
+    "beltId": "BELT-VIOLET",
+    "function": "Aprofundar Style Signature, limites, preferências e estratégia adaptativa.",
+    "nucleusIds": ["NUC-N097","NUC-N098","NUC-N099","NUC-N100"],
+    "status": "current"
+  },
+  {
+    "id": "PATH-C26",
+    "code": "C26",
+    "order": 26,
+    "name": "Self-Lab e Especialização",
+    "beltId": "BELT-VIOLET",
+    "function": "Desenvolver investigação pessoal, especialização funcional e refinamento orientado por evidência.",
+    "nucleusIds": ["NUC-N101","NUC-N102","NUC-N103","NUC-N104"],
+    "status": "current"
+  },
+  {
+    "id": "PATH-C27",
+    "code": "C27",
+    "order": 27,
+    "name": "Metaaprendizagem e Autonomia",
+    "beltId": "BELT-VIOLET",
+    "function": "Governar o próprio processo de aprendizagem, retenção e correção de rota.",
+    "nucleusIds": ["NUC-N105","NUC-N106","NUC-N107","NUC-N108"],
+    "status": "current"
+  },
+  {
+    "id": "PATH-C28",
+    "code": "C28",
+    "order": 28,
+    "name": "Síntese Pré-Maestria",
+    "beltId": "BELT-VIOLET",
+    "function": "Integrar cenários, planejamento, ética e Safety como preparação para governança, Marrom e Preta.",
+    "nucleusIds": ["NUC-N109","NUC-N110","NUC-N111","NUC-N112"],
+    "status": "current"
+  },
+  {
+    "id": "PATH-C29",
+    "code": "C29",
+    "order": 29,
+    "name": "Planejamento",
+    "beltId": "BELT-BROWN",
+    "function": "Organizar deliberadamente processos de desenvolvimento.",
+    "nucleusIds": ["NUC-N113","NUC-N114","NUC-N115","NUC-N116"],
+    "status": "current"
+  },
+  {
+    "id": "PATH-C30",
+    "code": "C30",
+    "order": 30,
+    "name": "Investigação",
+    "beltId": "BELT-BROWN",
+    "function": "Transformar problemas e observações em processos investigativos estruturados.",
+    "nucleusIds": ["NUC-N117","NUC-N118","NUC-N119","NUC-N120"],
+    "status": "current"
+  },
+  {
+    "id": "PATH-C31",
+    "code": "C31",
+    "order": 31,
+    "name": "Transmissão",
+    "beltId": "BELT-BROWN",
+    "function": "Desenvolver capacidade de transmitir conhecimento e competência com responsabilidade.",
+    "nucleusIds": ["NUC-N121","NUC-N122","NUC-N123","NUC-N124"],
+    "status": "current"
+  },
+  {
+    "id": "PATH-C32",
+    "code": "C32",
+    "order": 32,
+    "name": "Governança",
+    "beltId": "BELT-BROWN",
+    "function": "Compreender e operar mecanismos de autoridade, responsabilidade, revisão e continuidade.",
+    "nucleusIds": ["NUC-N125","NUC-N126","NUC-N127","NUC-N128"],
+    "status": "current"
+  }
+]
