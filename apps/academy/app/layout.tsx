@@ -2,7 +2,7 @@ import "./globals.css";
 
 export const metadata = {
   title: "SimpleWay Taijifu",
-  description: "LMS oficial do Taijifu.",
+  description: "App oficial de estudo e prática do Taijifu.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -17,14 +17,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </a>
             <nav className="nav">
               <a href="/">Dashboard</a>
-              <a href="/belt/branca">Faixa Branca</a>
+              <a href="/belt/branca">Branca</a>
+              <a href="/belt/amarela">Amarela</a>
               <a href="/assistant">Tutor IA</a>
-              <span className="nav-badge">P7</span>
+              <span className="nav-badge">APP</span>
             </nav>
           </header>
           {children}
           <footer className="footer">
-            <span>Canon 1.0 · SimpleWay Taijifu</span>
+            <span>Canon 1.0 · App de prática</span>
             <strong>Tehkné Solutions</strong>
           </footer>
         </div>

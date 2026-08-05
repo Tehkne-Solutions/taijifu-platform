@@ -10,7 +10,7 @@
     "status": { "enum": ["draft", "recorded", "ready-for-review", "submitted"] },
     "canonicalEntityId": { "type": "string", "minLength": 1 },
     "pathId": { "type": "string" },
-    "beltId": { "const": "BELT-WHITE" },
+    "beltId": { "type": "string", "pattern": "^BELT-[A-Z]+$" },
     "body": { "type": "string" },
     "metadata": { "type": "object" }
   },

@@ -16,7 +16,7 @@ export interface EvidenceRecord {
   status: EvidenceStatus;
   canonicalEntityId: string;
   pathId?: string;
-  beltId: "BELT-WHITE";
+  beltId: string;
   body: string;
   metadata?: Record<string, string | number | boolean>;
 }
@@ -29,7 +29,7 @@ export interface LearningEvent {
   detail: string;
 }
 
-export interface WhiteBeltLocalState {
+export interface BeltLocalState {
   schemaVersion: 2;
   progress: Record<string, Partial<Record<LearningStep, boolean>>>;
   evidence: EvidenceRecord[];
@@ -41,3 +41,6 @@ export interface WhiteBeltLocalState {
   };
   events: LearningEvent[];
 }
+
+export type WhiteBeltLocalState = BeltLocalState;
+export type YellowBeltLocalState = BeltLocalState;
