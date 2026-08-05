@@ -1,5 +1,5 @@
 {
-  "name":"taijifu-platform","private":true,"version":"1.14.0","packageManager":"pnpm@10.15.0","engines":{"node":">=22 <23"},
+  "name":"taijifu-platform","private":true,"version":"1.15.0","packageManager":"pnpm@10.15.0","engines":{"node":">=22 <23"},
   "scripts":{
     "canon:validate":"node packages/canon/scripts/validate.mjs",
     "canon:summary":"node packages/canon/scripts/summary.mjs",
@@ -13,7 +13,8 @@
     "db:migrate":"node packages/db/scripts/migrate.mjs",
     "production:preflight":"node tooling/production-preflight.mjs",
     "production:smoke":"node tooling/smoke-production.mjs",
-    "validate":"npm run canon:validate && npm run content:validate && npm run evidence:validate && npm run ui:validate && npm run p45:validate && npm run yellow:validate && npm run orange:validate && npm run red:validate && npm run green:validate && npm run cyan:validate && npm run blue:validate && npm run violet:validate && npm run brown:validate && npm run black:validate && npm run practice:persistence:validate && npm run auth:boundary:validate && npm run deploy:contract:validate && npm run production:readiness:validate && npm run p5:validate && npm run p6:validate && npm run p6:mvp:validate && npm run ai:validate && npm run p7:validate && npm run p8:validate",
+    "vercel:provision":"node tooling/provision-vercel-projects.mjs",
+    "validate":"npm run canon:validate && npm run content:validate && npm run evidence:validate && npm run ui:validate && npm run p45:validate && npm run yellow:validate && npm run orange:validate && npm run red:validate && npm run green:validate && npm run cyan:validate && npm run blue:validate && npm run violet:validate && npm run brown:validate && npm run black:validate && npm run practice:persistence:validate && npm run auth:boundary:validate && npm run deploy:contract:validate && npm run production:readiness:validate && npm run vercel:provision:validate && npm run p5:validate && npm run p6:validate && npm run p6:mvp:validate && npm run ai:validate && npm run p7:validate && npm run p8:validate",
     "ui:validate":"node tooling/validate-ui.mjs",
     "evidence:validate":"node packages/evidence/scripts/validate.mjs",
     "p45:validate":"node tooling/validate-p45.mjs",
@@ -30,6 +31,7 @@
     "auth:boundary:validate":"node tooling/validate-auth-boundary.mjs",
     "deploy:contract:validate":"node tooling/validate-deploy-contract.mjs",
     "production:readiness:validate":"node tooling/validate-production-readiness.mjs",
+    "vercel:provision:validate":"node tooling/validate-vercel-provisioning.mjs",
     "p5:validate":"node tooling/validate-p5.mjs",
     "p6:validate":"node tooling/validate-p6.mjs",
     "p6:mvp:validate":"node tooling/validate-p6-mvp.mjs",
