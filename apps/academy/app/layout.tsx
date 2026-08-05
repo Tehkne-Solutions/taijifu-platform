@@ -19,6 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <a href="/">Dashboard</a>
               <a href="/belt/branca">Branca</a>
               <a href="/belt/amarela">Amarela</a>
+              <a href="/belt/laranja">Laranja</a>
               <a href="/assistant">Tutor IA</a>
               <span className="nav-badge">APP</span>
             </nav>
