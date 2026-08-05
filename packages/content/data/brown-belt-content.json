@@ -1,0 +1,18 @@
+[
+{"id":"NUC-N113","summary":"Ler necessidades e contexto antes de planejar desenvolvimento.","practice":"Registre contexto, necessidades observáveis, recursos disponíveis e restrições antes de propor qualquer ciclo."},
+{"id":"NUC-N114","summary":"Converter contexto em objetivos, prioridades e restrições explícitas.","practice":"Escreva um objetivo principal, prioridades secundárias e limites que não podem ser ignorados."},
+{"id":"NUC-N115","summary":"Desenhar ciclos de desenvolvimento com progressão, critérios e revisão.","practice":"Monte um ciclo curto com objetivo, etapas, evidências esperadas e ponto formal de revisão."},
+{"id":"NUC-N116","summary":"Monitorar execução e ajustar o plano sem perder continuidade.","practice":"Compare plano e evidências reais, registre desvios e justifique um ajuste preservando rastreabilidade."},
+{"id":"NUC-N117","summary":"Transformar observações em perguntas e hipóteses investigáveis.","practice":"Escreva uma pergunta clara, uma hipótese e quais observações poderiam apoiar ou enfraquecer essa hipótese."},
+{"id":"NUC-N118","summary":"Definir Context Lock e protocolo para reduzir ambiguidade investigativa.","practice":"Fixe contexto, participantes, variáveis observadas, procedimento e critérios de parada antes de iniciar um pequeno estudo."},
+{"id":"NUC-N119","summary":"Interpretar evidências reconhecendo qualidade, limites e incerteza.","practice":"Analise um conjunto curto de registros separando dado observado, interpretação, limitação e conclusão provisória."},
+{"id":"NUC-N120","summary":"Usar replicação, revisão e síntese para aumentar confiabilidade.","practice":"Planeje uma segunda execução comparável e registre o que precisaria permanecer igual para permitir comparação."},
+{"id":"NUC-N121","summary":"Comunicar e demonstrar conhecimento com clareza e responsabilidade.","practice":"Explique um Núcleo em linguagem simples, declare escopo e verifique se a outra pessoa compreendeu a função central."},
+{"id":"NUC-N122","summary":"Construir progressão e scaffolding adequados ao estágio do aprendiz.","practice":"Divida uma competência em passos graduais, do simples ao complexo, com um critério observável para avançar."},
+{"id":"NUC-N123","summary":"Usar feedback e leitura do aprendiz para adaptar a transmissão.","practice":"Registre uma observação, ofereça feedback específico e escolha uma adaptação pedagógica baseada na resposta do aprendiz."},
+{"id":"NUC-N124","summary":"Transmitir com responsabilidade, preservando Safety, Canon e limites de competência.","practice":"Revise um plano de ensino identificando o que pode ser ensinado, o que exige supervisão e o que está fora do seu escopo."},
+{"id":"NUC-N125","summary":"Compreender autoridade como responsabilidade limitada por escopo.","practice":"Mapeie uma decisão institucional e registre quem pode decidir, por quê, dentro de qual escopo e com qual prestação de contas."},
+{"id":"NUC-N126","summary":"Distinguir Role, Credential e Authorization na operação real.","practice":"Analise três ações e classifique quais dependem de papel, credencial, autorização ou combinação desses elementos."},
+{"id":"NUC-N127","summary":"Governar mudanças do Canon por versionamento e rastreabilidade.","practice":"Esboce um Canon Change com motivo, fonte, impacto, versão afetada, revisão necessária e histórico preservado."},
+{"id":"NUC-N128","summary":"Sustentar Safety institucional, continuidade e legado do sistema.","practice":"Crie uma revisão de continuidade cobrindo Safety, sucessão de responsabilidade, documentação, incidentes e preservação do conhecimento."}
+]
