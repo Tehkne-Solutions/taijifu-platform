@@ -20,7 +20,7 @@ for (const marker of ["schema_migrations", "sql.begin", "TAIJIFU_DB_MIGRATE=PASS
 for (const marker of ["bases.length === 4", "belts.length === 10", "paths.length === 32", "nuclei.length === 128"]) {
   if (!siteHealth.includes(marker)) throw new Error(`site health missing ${marker}`);
 }
-for (const marker of ["DATABASE_URL", "TAIJIFU_AUTH_BRIDGE_SECRET", "TAIJIFU_ENABLE_DEMO_AUTH", "SELECT 1 AS ok", "status: ready ? \"ready\" : \"not-ready\""]) {
+for (const marker of ["isDatabaseConfigured", "TAIJIFU_AUTH_BRIDGE_SECRET", "TAIJIFU_ENABLE_DEMO_AUTH", "SELECT 1 AS ok", "status: ready ? \"ready\" : \"not-ready\""]) {
   if (!academyReadiness.includes(marker)) throw new Error(`academy readiness missing ${marker}`);
 }
 for (const marker of ["TAIJIFU_SITE_URL", "TAIJIFU_ACADEMY_URL", "/api/readiness", "TAIJIFU_PRODUCTION_SMOKE=PASS"]) {
