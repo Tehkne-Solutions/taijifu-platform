@@ -1,0 +1,15 @@
+{
+  "release":"RC1",
+  "platform":"Taijifu Platform",
+  "signature":"Tehkné Solutions",
+  "scope":{
+    "officialSite":"Fonte pública e oficial de informação e conhecimento do Taijifu",
+    "practiceApp":"App autenticado para estudo, prática, evidências, checkpoints e Travessias",
+    "externalProducts":"OUT_OF_SCOPE"
+  },
+  "canon":{"bases":4,"belts":10,"paths":32,"nuclei":128,"maxPathId":"PATH-C32","maxNucleusId":"NUC-N128"},
+  "academy":{"belts":10,"paths":32,"nuclei":128,"contentNodes":384,"automaticPromotion":false,"futureBeltOfficialEvidence":false},
+  "production":{"siteProject":"taijifu-site","siteRoot":"apps/web","academyProject":"taijifu-academy","academyRoot":"apps/academy","databaseContract":"PostgreSQL:DATABASE_URL","identity":"Clerk","demoAuthProduction":false},
+  "authority":{"canonMutationFromClient":false,"beltMutationFromClient":false,"promotionServerOnly":true,"promotionEvaluatorAuthorized":true},
+  "goLive":{"issue":26,"state":"HOLD_UNTIL_EXTERNAL_PROVISIONING","requiredSecrets":["VERCEL_TOKEN","DATABASE_URL","NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY","CLERK_SECRET_KEY","TAIJIFU_AUTH_BRIDGE_SECRET"]}
+}

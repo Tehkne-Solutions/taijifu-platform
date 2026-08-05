@@ -1,0 +1,34 @@
+import fs from "node:fs";
+
+const manifest = JSON.parse(fs.readFileSync("release/rc1.json","utf8"));
+const packageJson = JSON.parse(fs.readFileSync("package.json","utf8"));
+const canonSource = fs.readFileSync("packages/canon/src/index.ts","utf8");
+const provisioning = fs.readFileSync("tooling/provision-vercel-projects.mjs","utf8");
+const readiness = fs.readFileSync("apps/academy/app/api/readiness/route.ts","utf8");
+const auth = fs.readFileSync("packages/auth/src/index.ts","utf8");
+
+const assert=(condition,message)=>{if(!condition)throw new Error(message);};
+assert(manifest.release==="RC1","release must be RC1");
+assert(manifest.signature==="Tehkné Solutions","institutional signature mismatch");
+assert(manifest.scope.externalProducts==="OUT_OF_SCOPE","external products must remain out of scope");
+assert(manifest.canon.bases===4&&manifest.canon.belts===10&&manifest.canon.paths===32&&manifest.canon.nuclei===128,"canon counts mismatch");
+assert(manifest.canon.maxPathId==="PATH-C32"&&manifest.canon.maxNucleusId==="NUC-N128","canon terminal IDs mismatch");
+assert(manifest.academy.contentNodes===384,"academy content node count mismatch");
+assert(manifest.authority.promotionServerOnly===true&&manifest.authority.promotionEvaluatorAuthorized===true,"promotion authority mismatch");
+assert(manifest.production.siteProject==="taijifu-site"&&manifest.production.academyProject==="taijifu-academy","production project names mismatch");
+assert(manifest.production.siteRoot==="apps/web"&&manifest.production.academyRoot==="apps/academy","production roots mismatch");
+assert(manifest.production.demoAuthProduction===false,"demo auth must remain off in production");
+assert(manifest.goLive.issue===26&&manifest.goLive.state==="HOLD_UNTIL_EXTERNAL_PROVISIONING","go-live gate mismatch");
+assert(!canonSource.includes("PATH-C33")&&!canonSource.includes("NUC-N129"),"forbidden post-canon entities detected");
+assert(provisioning.includes('name: "taijifu-site", rootDirectory: "apps/web"'),"site provisioning contract missing");
+assert(provisioning.includes('name: "taijifu-academy", rootDirectory: "apps/academy"'),"academy provisioning contract missing");
+assert(!provisioning.includes("taijifu-masters"),"external product reference detected in provisioner");
+assert(readiness.includes("clerkPublishableKeyConfigured")&&readiness.includes("clerkSecretKeyConfigured")&&readiness.includes("demoAuthDisabled"),"production readiness must enforce Clerk and demo-off");
+assert(auth.includes("TAIJIFU_AUTH_BRIDGE_SECRET")&&auth.includes("timingSafeEqual"),"signed auth bridge contract missing");
+assert(packageJson.scripts["release:rc1:validate"]==="node tooling/validate-release-rc1.mjs","release validator script missing");
+console.log("TAIJIFU_RC1_RELEASE_VALIDATION=PASS");
+console.log("scope=OFFICIAL_SITE+PRACTICE_APP");
+console.log("canon=4/10/32/128");
+console.log("academy=10_BELTS+384_CONTENT_NODES");
+console.log("authority=PROMOTION_GATE_ONLY");
+console.log("go_live=HOLD_UNTIL_EXTERNAL_PROVISIONING");
