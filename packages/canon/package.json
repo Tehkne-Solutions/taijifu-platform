@@ -11,6 +11,7 @@
     "./data/release": "./data/release.json",
     "./knowledge": "./src/knowledge.ts",
     "./reference": "./src/reference.ts",
+    "./graduation": "./src/graduation.ts",
     ".": "./src/index.ts"
   },
   "scripts": {
