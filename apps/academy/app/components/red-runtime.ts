@@ -1,6 +1,6 @@
-import { createBeltRuntime } from "./belt-runtime";
+import type { BeltRuntimeConfig } from "./belt-runtime";
 
-export const redRuntime=createBeltRuntime({
+export const redConfig:BeltRuntimeConfig={
   slug:"red",
   beltId:"BELT-RED",
   nextBeltId:"BELT-GREEN",
@@ -9,4 +9,4 @@ export const redRuntime=createBeltRuntime({
   nucleusStart:37,
   nucleusCount:12,
   pathIds:["PATH-C10","PATH-C11","PATH-C12"]
-});
+};
