@@ -1,6 +1,6 @@
 {
-  "name":"@taijifu/content","version":"0.8.0","private":true,"type":"module",
-  "exports":{"./types":"./src/types.ts","./data/nodes":"./src/nodes.ts","./data/edges":"./src/edges.ts","./data/white-belt":"./data/white-belt-slice.json","./data/yellow-belt":"./data/yellow-belt-slice.json","./data/orange-belt":"./data/orange-belt-slice.json","./data/red-belt":"./data/red-belt-slice.json","./data/green-belt":"./data/green-belt-slice.json","./data/cyan-belt":"./data/cyan-belt-slice.json","./data/blue-belt":"./data/blue-belt-slice.json",".":"./src/index.ts"},
+  "name":"@taijifu/content","version":"0.9.0","private":true,"type":"module",
+  "exports":{"./types":"./src/types.ts","./data/nodes":"./src/nodes.ts","./data/edges":"./src/edges.ts","./data/white-belt":"./data/white-belt-slice.json","./data/yellow-belt":"./data/yellow-belt-slice.json","./data/orange-belt":"./data/orange-belt-slice.json","./data/red-belt":"./data/red-belt-slice.json","./data/green-belt":"./data/green-belt-slice.json","./data/cyan-belt":"./data/cyan-belt-slice.json","./data/blue-belt":"./data/blue-belt-slice.json","./data/violet-belt":"./data/violet-belt-slice.json",".":"./src/index.ts"},
   "scripts":{"validate":"node scripts/validate.mjs","summary":"node scripts/summary.mjs"},
   "dependencies":{"@taijifu/canon":"workspace:*"}
 }
