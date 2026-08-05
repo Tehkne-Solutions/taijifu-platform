@@ -1,5 +1,5 @@
 {
-  "name":"taijifu-platform","private":true,"version":"1.13.0","packageManager":"pnpm@10.15.0","engines":{"node":">=22 <23"},
+  "name":"taijifu-platform","private":true,"version":"1.14.0","packageManager":"pnpm@10.15.0","engines":{"node":">=22 <23"},
   "scripts":{
     "canon:validate":"node packages/canon/scripts/validate.mjs",
     "canon:summary":"node packages/canon/scripts/summary.mjs",
@@ -11,6 +11,7 @@
     "content:validate":"node packages/content/scripts/validate.mjs",
     "content:summary":"node packages/content/scripts/summary.mjs",
     "db:migrate":"node packages/db/scripts/migrate.mjs",
+    "production:preflight":"node tooling/production-preflight.mjs",
     "production:smoke":"node tooling/smoke-production.mjs",
     "validate":"npm run canon:validate && npm run content:validate && npm run evidence:validate && npm run ui:validate && npm run p45:validate && npm run yellow:validate && npm run orange:validate && npm run red:validate && npm run green:validate && npm run cyan:validate && npm run blue:validate && npm run violet:validate && npm run brown:validate && npm run black:validate && npm run practice:persistence:validate && npm run auth:boundary:validate && npm run deploy:contract:validate && npm run production:readiness:validate && npm run p5:validate && npm run p6:validate && npm run p6:mvp:validate && npm run ai:validate && npm run p7:validate && npm run p8:validate",
     "ui:validate":"node tooling/validate-ui.mjs",
