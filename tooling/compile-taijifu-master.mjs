@@ -25,6 +25,7 @@ const reference = loadTrustedTsConstants("packages/canon/src/reference.ts", ["ba
 const graduation = loadTrustedTsConstants("packages/canon/src/graduation.ts", ["graduationSystem", "officialBeltOrder"]);
 const method = loadTrustedTsConstants("packages/canon/src/method.ts", ["learningCycle", "integralMethod"]);
 const pfi = loadTrustedTsConstants("packages/canon/src/pfi.ts", ["pfiSystem"]);
+const science = loadTrustedTsConstants("packages/canon/src/science.ts", ["martialScience", "kineticArts"]);
 
 const nuclei = nucleusNames.map((name, index) => {
   const order = index + 1;
@@ -108,17 +109,35 @@ out.push(bullets(pfi.pfiSystem.adaptation));
 out.push(h(3, "Governança do PFI"));
 out.push(bullets(pfi.pfiSystem.governance));
 
-out.push(h(2, "8. Domínios de Conhecimento"));
+out.push(h(2, "8. Ciência Marcial e Artes Cinéticas"));
+out.push(h(3, "Ciência Marcial"));
+out.push(`${science.martialScience.principle}\n`);
+for (const d of science.martialScience.domains) out.push(`- **${d.title} (${d.id})** — ${d.text}`);
+out.push("\n");
+out.push(h(4, "Ciclo BMC"));
+out.push(bullets(science.martialScience.bmcCycle));
+out.push(h(4, "Context Lock"));
+out.push(bullets(science.martialScience.contextLock));
+out.push(h(4, "Regras de evidência"));
+out.push(bullets(science.martialScience.evidenceRules));
+out.push(h(3, "Artes Cinéticas"));
+out.push(`${science.kineticArts.principle}\n`);
+for (const d of science.kineticArts.domains) out.push(`- **${d.title} (${d.id})** — ${d.text}`);
+out.push("\n");
+out.push(h(4, "Regras de integração"));
+out.push(bullets(science.kineticArts.integrationRules));
+
+out.push(h(2, "9. Domínios de Conhecimento"));
 for (const page of knowledge.knowledgePages) {
   out.push(`### ${page.title}\n**Direção:** ${page.eyebrow}  \n${page.summary}\n`);
   for (const section of page.sections) { out.push(`#### ${section.title}\n${section.body}\n`); if (section.items?.length) out.push(bullets(section.items)); }
 }
 
-out.push(h(2, "9. História e Marcos"));
+out.push(h(2, "10. História e Marcos"));
 for (const m of knowledge.historyMilestones) out.push(`### ${m.label}\n${m.text}\n`);
 out.push(`Documentos antigos permanecem como histórico quando forem substituídos por decisão canônica posterior. Descobertas futuras podem gerar revisão por proveniência e Canon Change, mas não substituem silenciosamente a versão vigente.\n`);
 
-out.push(h(2, "10. Proveniência e Referências"));
+out.push(h(2, "11. Proveniência e Referências"));
 out.push(h(3, "Tipos de proveniência"));
 for (const p of reference.provenanceTypes) out.push(`- **${p.title} (${p.id})** — ${p.text}`);
 out.push("\n");
@@ -129,12 +148,12 @@ out.push(h(3, "Tipos de claim"));
 for (const [id, label] of reference.claimTypes) out.push(`- **${id}** — ${label}`);
 out.push("\n");
 
-out.push(h(2, "11. Governança Canônica"));
+out.push(h(2, "12. Governança Canônica"));
 out.push(`O Site Oficial é a fonte pública de conhecimento do Taijifu. O App/Academy é a superfície de estudo e prática. Progressão, evidência e Travessias não alteram a graduação por ação exclusiva do cliente; promoção depende de governança e Promotion Gate server-side. Conteúdo histórico, reconstruído, contemporâneo e externo deve permanecer distinguível por proveniência.\n`);
 
-out.push(h(2, "12. Integridade Estrutural"));
-out.push(`- Bases: **${bases.length}**\n- Faixas: **${belts.length}**\n- Caminhos: **${paths.length}**\n- Núcleos: **${nuclei.length}**\n- Princípios: **${knowledge.principles.length}**\n- Valores do Manifesto: **${knowledge.manifestoValues.length}**\n- Etapas do Método Integral: **${method.integralMethod.stages.length}**\n- Capacidades PFI: **${pfi.pfiSystem.capacities.length}**\n- Capacity States: **${pfi.pfiSystem.capacityStates.length}**\n- Domínios de conhecimento: **${knowledge.knowledgePages.length}**\n`);
-out.push(`**Invariantes:** 4 Bases · 10 Faixas · 32 Caminhos · 128 Núcleos · 10 etapas integrais · 12 capacidades PFI · 4 Capacity States · nenhum C33 · nenhum N129.\n`);
+out.push(h(2, "13. Integridade Estrutural"));
+out.push(`- Bases: **${bases.length}**\n- Faixas: **${belts.length}**\n- Caminhos: **${paths.length}**\n- Núcleos: **${nuclei.length}**\n- Princípios: **${knowledge.principles.length}**\n- Valores do Manifesto: **${knowledge.manifestoValues.length}**\n- Etapas do Método Integral: **${method.integralMethod.stages.length}**\n- Capacidades PFI: **${pfi.pfiSystem.capacities.length}**\n- Capacity States: **${pfi.pfiSystem.capacityStates.length}**\n- Domínios de Ciência Marcial: **${science.martialScience.domains.length}**\n- Domínios de Artes Cinéticas: **${science.kineticArts.domains.length}**\n- Domínios de conhecimento: **${knowledge.knowledgePages.length}**\n`);
+out.push(`**Invariantes:** 4 Bases · 10 Faixas · 32 Caminhos · 128 Núcleos · 10 etapas integrais · 12 capacidades PFI · 4 Capacity States · 10 domínios de Ciência Marcial · 12 domínios de Artes Cinéticas · nenhum C33 · nenhum N129.\n`);
 out.push(`---\n\n**${release.signature}**\n`);
 
 const document = out.join("\n").replace(/\n{3,}/g, "\n\n");
@@ -150,11 +169,14 @@ if (method.learningCycle.length !== 5) failures.push(`learning_cycle=${method.le
 if (method.integralMethod.stages.length !== 10) failures.push(`integral_stages=${method.integralMethod.stages.length}`);
 if (pfi.pfiSystem.capacities.length !== 12) failures.push(`pfi_capacities=${pfi.pfiSystem.capacities.length}`);
 if (pfi.pfiSystem.capacityStates.length !== 4) failures.push(`capacity_states=${pfi.pfiSystem.capacityStates.length}`);
+if (science.martialScience.domains.length !== 10) failures.push(`martial_science_domains=${science.martialScience.domains.length}`);
+if (science.kineticArts.domains.length !== 12) failures.push(`kinetic_arts_domains=${science.kineticArts.domains.length}`);
 if (JSON.stringify(actualBeltOrder) !== JSON.stringify(graduation.officialBeltOrder)) failures.push("graduation_belt_order_mismatch");
 if (JSON.stringify(integralBeltIds) !== JSON.stringify(belts.map((b)=>b.id))) failures.push("integral_method_belt_alignment_mismatch");
 if (graduation.graduationSystem.physicalBelt.body !== "preta") failures.push("physical_belt_body_must_be_black");
 if (!graduation.graduationSystem.physicalBelt.longitudinalLines.toLowerCase().includes("dourad")) failures.push("gold_lines_missing");
 if (!pfi.pfiSystem.governance.some((x)=>x.includes("não concede faixa"))) failures.push("pfi_must_not_grant_belt");
+if (!science.kineticArts.integrationRules.some((x)=>x.includes("não ser incorporada automaticamente"))) failures.push("external_reference_must_not_auto_enter_canon");
 if (!document.includes("Tehkné Solutions")) failures.push("signature_missing");
 
 if (process.argv.includes("--check")) {
@@ -164,6 +186,7 @@ if (process.argv.includes("--check")) {
   console.log("graduation=OPEN_PROGRESS+DEGREES+FOUR_BASES");
   console.log("integral_method=10_STAGES_ALIGNED_TO_10_BELTS");
   console.log("pfi=12_CAPACITIES+4_CAPACITY_STATES+NO_AUTO_GRADUATION");
+  console.log("science=10_MARTIAL_SCIENCE_DOMAINS+12_KINETIC_ARTS_DOMAINS");
   console.log(`characters=${document.length}`);
   process.exit(0);
 }
