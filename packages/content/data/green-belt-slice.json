@@ -1,0 +1,9 @@
+{
+  "id":"GREEN-BELT-VS1",
+  "beltId":"BELT-GREEN",
+  "function":"Conectar",
+  "paths":["PATH-C13","PATH-C14","PATH-C15","PATH-C16"],
+  "nuclei":["NUC-N049","NUC-N050","NUC-N051","NUC-N052","NUC-N053","NUC-N054","NUC-N055","NUC-N056","NUC-N057","NUC-N058","NUC-N059","NUC-N060","NUC-N061","NUC-N062","NUC-N063","NUC-N064"],
+  "nextBeltId":"BELT-CYAN",
+  "automaticPromotion":false
+}

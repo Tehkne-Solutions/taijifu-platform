@@ -2,11 +2,12 @@ import whiteConfig from "../data/white-belt-content.json";
 import yellowConfig from "../data/yellow-belt-content.json";
 import orangeConfig from "../data/orange-belt-content.json";
 import redConfig from "../data/red-belt-content.json";
+import greenConfig from "../data/green-belt-content.json";
 import { nuclei } from "@taijifu/canon";
 const safety="Interrompa a atividade sempre que houver Tap, comando de parada, perda de controle ou condição insegura.";
 const evidencePrompt="Registre uma observação curta: o que você percebeu, o que controlou e o que precisa praticar novamente?";
 const safetyGate="Executar apenas dentro do nível de contato, intensidade e supervisão adequados.";
-const config=[...whiteConfig,...yellowConfig,...orangeConfig,...redConfig];
+const config=[...whiteConfig,...yellowConfig,...orangeConfig,...redConfig,...greenConfig];
 const nodes:any[]=[];
 for(const item of config){
   const n=nuclei.find(x=>x.id===item.id)!;

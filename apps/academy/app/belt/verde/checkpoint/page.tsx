@@ -1,0 +1,4 @@
+import { BeltPathCheckpoints } from "../../../components/belt-runtime-ui";
+import { greenConfig } from "../../../components/green-runtime";
+const paths=[{id:"PATH-C13",code:"C13",name:"Transições"},{id:"PATH-C14",code:"C14",name:"Cadeias Funcionais"},{id:"PATH-C15",code:"C15",name:"Integração de Zonas"},{id:"PATH-C16",code:"C16",name:"Integração das Bases"}];
+export default function GreenCheckpointsPage(){return <main><nav className="breadcrumb"><a href="/">Academy</a><span>/</span><a href="/belt/verde">Faixa Verde</a><span>/</span><strong>Checkpoints</strong></nav><section className="lesson-hero compact-hero"><span className="eyebrow">Integração C13–C16</span><h1>Checkpoints de Caminho.</h1><p className="lead">Registre a síntese dos quatro Caminhos. Checkpoint comprova aprendizagem no App; não concede graduação.</p></section><section className="section"><BeltPathCheckpoints config={greenConfig} paths={paths}/></section></main>;}

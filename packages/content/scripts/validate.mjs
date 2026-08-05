@@ -1,34 +1,13 @@
 import fs from'node:fs';import path from'node:path';import{fileURLToPath}from'node:url';
 const here=path.dirname(fileURLToPath(import.meta.url)),root=path.resolve(here,'..'),repo=path.resolve(root,'../..');
 const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
-const white=read(path.join(root,'data/white-belt-content.json'));
-const yellow=read(path.join(root,'data/yellow-belt-content.json'));
-const orange=read(path.join(root,'data/orange-belt-content.json'));
-const red=read(path.join(root,'data/red-belt-content.json'));
-const whiteSlice=read(path.join(root,'data/white-belt-slice.json'));
-const yellowSlice=read(path.join(root,'data/yellow-belt-slice.json'));
-const orangeSlice=read(path.join(root,'data/orange-belt-slice.json'));
-const redSlice=read(path.join(root,'data/red-belt-slice.json'));
-const names=read(path.join(repo,'packages/canon/data/nuclei.json'));
-const paths=read(path.join(repo,'packages/canon/data/paths.json'));
-const belts=read(path.join(repo,'packages/canon/data/belts.json'));
-const errors=[];
-function check(label,cfg,slice,start,end){
-  if(cfg.length!==12)errors.push(`${label} config=${cfg.length}, expected=12`);
-  if(slice.nuclei.length!==12)errors.push(`${label} slice nuclei=${slice.nuclei.length}, expected=12`);
-  if(new Set(cfg.map(x=>x.id)).size!==12)errors.push(`duplicate ${label} nucleus config`);
-  for(const item of cfg){const n=Number(item.id.replace('NUC-N',''));if(!Number.isInteger(n)||n<start||n>end)errors.push(`invalid ${label} nucleus ${item.id}`);if(!item.summary||!item.practice)errors.push(`${item.id} missing pedagogy`)}
-}
-check('white',white,whiteSlice,1,12);check('yellow',yellow,yellowSlice,13,24);check('orange',orange,orangeSlice,25,36);check('red',red,redSlice,37,48);
-const all=[...white,...yellow,...orange,...red];
-if(new Set(all.map(x=>x.id)).size!==48)errors.push('duplicate nucleus across published slices');
-if(names.length!==128)errors.push('canon nuclei names must equal 128');
-if(paths.length!==32||belts.length!==10)errors.push('canon structure mismatch');
-const nodes=all.length*3,edges=nodes+(nodes-1);
-if(nodes!==144)errors.push(`content_nodes=${nodes}, expected=144`);
-if(edges!==287)errors.push(`content_edges=${edges}, expected=287`);
-if(errors.length){console.error('TAIJIFU_CONTENT_VALIDATION=FAIL');for(const e of errors)console.error('- '+e);process.exit(1)}
-console.log('TAIJIFU_CONTENT_VALIDATION=PASS');
-console.log('slices=WHITE-BELT-VS1,YELLOW-BELT-VS1,ORANGE-BELT-VS1,RED-BELT-VS1');
-console.log(`content_nodes=${nodes}`);console.log(`content_edges=${edges}`);
-console.log('published_nuclei=48');console.log('coverage=lesson+quiz+guided-practice per nucleus');
+const sets=[
+  ['white',read(path.join(root,'data/white-belt-content.json')),read(path.join(root,'data/white-belt-slice.json')),1,12,12],
+  ['yellow',read(path.join(root,'data/yellow-belt-content.json')),read(path.join(root,'data/yellow-belt-slice.json')),13,24,12],
+  ['orange',read(path.join(root,'data/orange-belt-content.json')),read(path.join(root,'data/orange-belt-slice.json')),25,36,12],
+  ['red',read(path.join(root,'data/red-belt-content.json')),read(path.join(root,'data/red-belt-slice.json')),37,48,12],
+  ['green',read(path.join(root,'data/green-belt-content.json')),read(path.join(root,'data/green-belt-slice.json')),49,64,16]
+];
+const names=read(path.join(repo,'packages/canon/data/nuclei.json')),paths=read(path.join(repo,'packages/canon/data/paths.json')),belts=read(path.join(repo,'packages/canon/data/belts.json')),errors=[];
+for(const[label,cfg,slice,start,end,count]of sets){if(cfg.length!==count)errors.push(`${label} config=${cfg.length}, expected=${count}`);if(slice.nuclei.length!==count)errors.push(`${label} slice nuclei=${slice.nuclei.length}, expected=${count}`);if(new Set(cfg.map(x=>x.id)).size!==count)errors.push(`duplicate ${label} nucleus config`);for(const item of cfg){const n=Number(item.id.replace('NUC-N',''));if(!Number.isInteger(n)||n<start||n>end)errors.push(`invalid ${label} nucleus ${item.id}`);if(!item.summary||!item.practice)errors.push(`${item.id} missing pedagogy`)}}
+const all=sets.flatMap(([,cfg])=>cfg);if(new Set(all.map(x=>x.id)).size!==64)errors.push('duplicate nucleus across published slices');if(names.length!==128||paths.length!==32||belts.length!==10)errors.push('canon structure mismatch');const nodes=all.length*3,edges=nodes+(nodes-1);if(nodes!==192)errors.push(`content_nodes=${nodes}, expected=192`);if(edges!==383)errors.push(`content_edges=${edges}, expected=383`);if(errors.length){console.error('TAIJIFU_CONTENT_VALIDATION=FAIL');for(const e of errors)console.error('- '+e);process.exit(1)}console.log('TAIJIFU_CONTENT_VALIDATION=PASS');console.log('published_belts=5');console.log(`content_nodes=${nodes}`);console.log(`content_edges=${edges}`);console.log('published_nuclei=64');console.log('coverage=lesson+quiz+guided-practice per nucleus');
