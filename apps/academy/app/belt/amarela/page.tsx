@@ -1,0 +1,16 @@
+import nodes from "@taijifu/content/data/nodes";
+import paths from "@taijifu/canon/data/paths";
+import nuclei from "@taijifu/canon/data/nuclei";
+import { YellowProgressSummary, YellowNucleusProgress } from "../../components/yellow-progress";
+
+export default function YellowBelt(){
+  const all=nodes as any[];
+  const yellowPaths=(paths as any[]).filter(p=>p.beltId==="BELT-YELLOW");
+  const yellowNuclei=(nuclei as any[]).filter(n=>n.beltId==="BELT-YELLOW").sort((a,b)=>a.order-b.order);
+  return <main>
+    <section className="belt-hero"><div><span className="eyebrow">Faixa 02 · Amarela</span><h1>Perceber.</h1><p className="lead">Aprender a ler distância, espaço, intenção, ritmo e estrutura antes de decidir — com controle e Safety.</p></div><div className="belt-mark"><span>02</span><strong>黄</strong><small>12 Núcleos</small></div></section>
+    <YellowProgressSummary />
+    <section className="section"><div className="section-heading"><div><span className="eyebrow">Mapa da faixa</span><h2>Três Caminhos de percepção.</h2></div><p>A Amarela amplia a leitura do contexto. O App registra aprendizagem e evidência; graduação continua separada da conclusão digital.</p></div><div className="journey">{yellowPaths.map((path,index)=>{const pathNuclei=yellowNuclei.filter(n=>n.pathId===path.id);return <section className="journey-path" key={path.id}><div className="journey-head"><div className="journey-index">{String(index+1).padStart(2,"0")}</div><div><span className="meta">{path.code}</span><h3>{path.name}</h3><p>{path.function}</p></div></div><div className="nucleus-list">{pathNuclei.map(n=>{const lesson=all.find(node=>node.canonicalEntityId===n.id&&node.type==="lesson");return <a className="nucleus-row" key={n.id} href={`/belt/amarela/${n.code.toLowerCase()}`}><span className="nucleus-code">{n.code}</span><div><strong>{n.name}</strong><p>{lesson?.summary}</p></div><YellowNucleusProgress nucleusId={n.id}/><span className="row-arrow">→</span></a>;})}</div></section>;})}</div></section>
+    <section className="section next-stage-section"><div className="section-heading"><div><span className="eyebrow">Integração</span><h2>Depois dos 12 Núcleos.</h2></div><p>Feche C04–C06, registre sínteses e prepare a Travessia Amarela para avaliação futura.</p></div><div className="next-stage-grid"><a className="path-card" href="/belt/amarela/checkpoint"><span className="path-number">A</span><div><span className="meta">C04–C06</span><h3>Checkpoints de Caminho</h3><p>Conecte distância, timing e estrutura em evidência reflexiva.</p><span className="text-link">Abrir checkpoints →</span></div></a><a className="path-card dark-card" href="/belt/amarela/travessia"><span className="path-number">B</span><div><span className="meta">Travessia</span><h3>Submissão para avaliação</h3><p>Consolide a função Perceber sem converter XP em graduação.</p><span className="text-link">Abrir Travessia →</span></div></a><a className="path-card" href="/belt/amarela/history"><span className="path-number">C</span><div><span className="meta">Evidence Timeline</span><h3>Histórico da Amarela</h3><p>Veja etapas, reflexões e checkpoints registrados nesta faixa.</p><span className="text-link">Ver histórico →</span></div></a></div></section>
+  </main>;
+}
