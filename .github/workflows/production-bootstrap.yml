@@ -1,0 +1,131 @@
+name: Taijifu Production Bootstrap
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirmation:
+        description: "Type BOOTSTRAP_TAIJIFU_PROD to provision, migrate and deploy"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+env:
+  VERCEL_TEAM_ID: team_GAFmMllTKaWx5iGEa8sTZJ0T
+  VERCEL_SCOPE: thales-dvfs-projects
+
+jobs:
+  bootstrap:
+    if: ${{ inputs.confirmation == 'BOOTSTRAP_TAIJIFU_PROD' }}
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.15.0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Verify production secrets
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          CLERK_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
+          CLERK_SECRET_KEY: ${{ secrets.CLERK_SECRET_KEY }}
+          TAIJIFU_AUTH_BRIDGE_SECRET: ${{ secrets.TAIJIFU_AUTH_BRIDGE_SECRET }}
+        run: |
+          set -euo pipefail
+          for key in VERCEL_TOKEN DATABASE_URL CLERK_PUBLISHABLE_KEY CLERK_SECRET_KEY TAIJIFU_AUTH_BRIDGE_SECRET; do
+            test -n "${!key:-}" || { echo "Missing required secret: $key"; exit 1; }
+          done
+
+      - name: Install workspace dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Provision Vercel projects
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_TEAM_ID: ${{ env.VERCEL_TEAM_ID }}
+          TAIJIFU_VERCEL_APPLY: "true"
+        run: node tooling/provision-vercel-projects.mjs
+
+      - name: Install Vercel CLI
+        run: pnpm add -g vercel@latest
+
+      - name: Link Academy project
+        run: vercel link --yes --project taijifu-academy --scope "$VERCEL_SCOPE" --cwd apps/academy --token "${{ secrets.VERCEL_TOKEN }}"
+
+      - name: Configure Academy production environment
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
+          CLERK_SECRET_KEY: ${{ secrets.CLERK_SECRET_KEY }}
+          TAIJIFU_AUTH_BRIDGE_SECRET: ${{ secrets.TAIJIFU_AUTH_BRIDGE_SECRET }}
+        run: |
+          set -euo pipefail
+          put_env() {
+            local key="$1" value="$2"
+            vercel env rm "$key" production --yes --cwd apps/academy --token "$VERCEL_TOKEN" >/dev/null 2>&1 || true
+            printf '%s' "$value" | vercel env add "$key" production --sensitive --cwd apps/academy --token "$VERCEL_TOKEN" >/dev/null
+          }
+          put_env DATABASE_URL "$DATABASE_URL"
+          put_env NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY "$NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY"
+          put_env CLERK_SECRET_KEY "$CLERK_SECRET_KEY"
+          put_env TAIJIFU_AUTH_BRIDGE_SECRET "$TAIJIFU_AUTH_BRIDGE_SECRET"
+          put_env TAIJIFU_ENABLE_DEMO_AUTH "false"
+          put_env TAIJIFU_ALLOW_DEMO_AUTH "0"
+          printf '%s' '/sign-in' | vercel env add NEXT_PUBLIC_CLERK_SIGN_IN_URL production --cwd apps/academy --token "$VERCEL_TOKEN" >/dev/null 2>&1 || true
+          printf '%s' '/sign-up' | vercel env add NEXT_PUBLIC_CLERK_SIGN_UP_URL production --cwd apps/academy --token "$VERCEL_TOKEN" >/dev/null 2>&1 || true
+
+      - name: Database preflight
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: pnpm db:preflight
+
+      - name: Run migrations
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: pnpm db:migrate
+
+      - name: Link Site project
+        run: vercel link --yes --project taijifu-site --scope "$VERCEL_SCOPE" --cwd apps/web --token "${{ secrets.VERCEL_TOKEN }}"
+
+      - name: Deploy Site
+        id: site
+        run: |
+          SITE_URL=$(vercel deploy --prod --yes --cwd apps/web --token "${{ secrets.VERCEL_TOKEN }}" | tail -n 1)
+          echo "url=$SITE_URL" >> "$GITHUB_OUTPUT"
+
+      - name: Deploy Academy
+        id: academy
+        run: |
+          ACADEMY_URL=$(vercel deploy --prod --yes --cwd apps/academy --token "${{ secrets.VERCEL_TOKEN }}" | tail -n 1)
+          echo "url=$ACADEMY_URL" >> "$GITHUB_OUTPUT"
+
+      - name: Production health and readiness
+        env:
+          SITE_URL: ${{ steps.site.outputs.url }}
+          ACADEMY_URL: ${{ steps.academy.outputs.url }}
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error "$SITE_URL/api/health" | tee /tmp/site-health.json
+          curl --fail --silent --show-error "$ACADEMY_URL/api/health" | tee /tmp/academy-health.json
+          curl --fail --silent --show-error "$ACADEMY_URL/api/readiness" | tee /tmp/academy-readiness.json
+
+      - name: Production smoke
+        env:
+          TAIJIFU_SITE_URL: ${{ steps.site.outputs.url }}
+          TAIJIFU_ACADEMY_URL: ${{ steps.academy.outputs.url }}
+        run: pnpm production:smoke
+
+      - name: Bootstrap summary
+        run: |
+          echo "TAIJIFU_PRODUCTION_BOOTSTRAP=PASS"
+          echo "site=${{ steps.site.outputs.url }}"
+          echo "academy=${{ steps.academy.outputs.url }}"
