@@ -1,0 +1,53 @@
+export const martialScience = {
+  id: "TAIJIFU-MARTIAL-SCIENCE-1.0",
+  name: "Ciência Marcial",
+  principle: "A Ciência Marcial do Taijifu investiga sistematicamente prática, aprendizagem, eficácia, risco, adaptação e transferência. Tradição, autoridade e novidade podem gerar hipóteses, mas não substituem observação, contexto e revisão.",
+  domains: [
+    { id: "MS-01", title: "Biomecânica", text: "Estuda organização de forças, alavancas, base, centro, rotação, transferência e economia de movimento." },
+    { id: "MS-02", title: "Percepção e decisão", text: "Estuda atenção, leitura de contexto, timing, escolha de ação, incerteza e atualização de resposta." },
+    { id: "MS-03", title: "Aprendizagem motora", text: "Estuda aquisição, retenção, variabilidade, feedback, prática deliberada e transferência de habilidade." },
+    { id: "MS-04", title: "Estratégia e tática", text: "Estuda distância, ritmo, iniciativa, pressão, espaço, recursos e adaptação a objetivos e restrições." },
+    { id: "MS-05", title: "Interação e contato", text: "Estuda estrutura, sensibilidade, controle, equilíbrio, transição e resposta em contato físico." },
+    { id: "MS-06", title: "Risco e Safety", text: "Estuda probabilidade, severidade, exposição, controles, Near Misses e critérios de interrupção ou adaptação." },
+    { id: "MS-07", title: "Capacidade e fadiga", text: "Estuda como capacidade física, esforço, recuperação e estado funcional alteram execução e decisão." },
+    { id: "MS-08", title: "Transferência", text: "Estuda quando uma competência aprendida permanece útil sob mudança de parceiro, ambiente, pressão, equipamento ou tarefa." },
+    { id: "MS-09", title: "Pedagogia marcial", text: "Estuda sequenciamento, instrução, avaliação, feedback, progressão de complexidade e desenho de prática." },
+    { id: "MS-10", title: "Governança do conhecimento", text: "Estuda proveniência, replicação, revisão, decisão canônica e manutenção explícita de incerteza." },
+  ],
+  bmcCycle: ["Observar", "Perguntar", "Investigar", "Registrar", "Replicar", "Revisar", "Decidir", "Monitorar"],
+  contextLock: ["População", "Experiência", "Ambiente", "Regras", "Equipamento", "Intensidade", "Restrições", "Objetivo"],
+  evidenceRules: [
+    "Uma observação deve registrar contexto suficiente para ser interpretável.",
+    "Uma conclusão local não deve ser promovida automaticamente a regra universal.",
+    "Falha, defesa e contramedida fazem parte da análise de uma técnica ou estratégia.",
+    "Resultados contraditórios permanecem registrados até revisão suficiente; não são apagados para preservar coerência narrativa.",
+    "Mudança canônica exige decisão explícita, proveniência e histórico preservado.",
+  ],
+} as const;
+
+export const kineticArts = {
+  id: "TAIJIFU-KINETIC-ARTS-1.0",
+  name: "Artes Cinéticas",
+  principle: "Artes Cinéticas organizam o estudo intencional do movimento humano para ampliar repertório, controle, adaptabilidade e expressão. Elas atravessam o Taijifu sem formar um currículo concorrente.",
+  domains: [
+    { id: "KA-01", title: "Movement Literacy", text: "Vocabulário básico de ações, posições, transições e relações espaciais que sustenta aprendizagem posterior." },
+    { id: "KA-02", title: "Locomoção", text: "Deslocamentos em diferentes direções, níveis, ritmos, apoios e configurações." },
+    { id: "KA-03", title: "Eixo e rotação", text: "Controle do eixo corporal, mudança de orientação, rotação segmentar e integração do corpo inteiro." },
+    { id: "KA-04", title: "Quedas e aterrissagens", text: "Organização corporal para reduzir impacto, recuperar orientação e continuar a tarefa com controle." },
+    { id: "KA-05", title: "Ground Movement", text: "Locomoção, transição e reorganização próxima ao solo sem pressupor função combativa imediata." },
+    { id: "KA-06", title: "Ritmo e timing", text: "Variação temporal, pausa, aceleração, desaceleração, cadência e sincronização." },
+    { id: "KA-07", title: "Equilíbrio e orientação", text: "Controle postural, reorganização do centro e adaptação a bases, superfícies e mudanças de direção." },
+    { id: "KA-08", title: "Acrobacia progressiva", text: "Elementos acrobáticos tratados por progressão, controle, pré-requisitos e Safety, sem obrigação universal." },
+    { id: "KA-09", title: "Obstáculos e Parkour", text: "Leitura e transposição de ambiente como estudo de deslocamento, eficiência e tomada de decisão espacial." },
+    { id: "KA-10", title: "Manipulação de objetos", text: "Coordenação e adaptação por interação com objetos, instrumentos e restrições de tarefa." },
+    { id: "KA-11", title: "Improvisação", text: "Exploração controlada de soluções de movimento sob regras, estímulos ou limitações variáveis." },
+    { id: "KA-12", title: "Expressão cinética", text: "Uso do movimento como linguagem, composição, presença e exploração estética sem perder controle e consciência." },
+  ],
+  integrationRules: [
+    "Nenhum domínio cinético cria faixa, grau, Caminho ou Núcleo adicional por si só.",
+    "Elementos entram no currículo somente quando possuem função pedagógica explícita e contexto de Safety adequado.",
+    "Uma prática externa pode ser estudada como referência sem ser incorporada automaticamente ao Canon.",
+    "A incorporação de elementos de outras artes exige descrição funcional, proveniência e decisão canônica explícita.",
+    "Risco e complexidade são escalados de acordo com contexto, experiência e objetivo pedagógico.",
+  ],
+} as const;

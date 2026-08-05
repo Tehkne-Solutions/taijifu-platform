@@ -14,6 +14,7 @@
     "./graduation": "./src/graduation.ts",
     "./method": "./src/method.ts",
     "./pfi": "./src/pfi.ts",
+    "./science": "./src/science.ts",
     ".": "./src/index.ts"
   },
   "scripts": {
