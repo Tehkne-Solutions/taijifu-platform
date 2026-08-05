@@ -10,6 +10,7 @@
     "./data/nuclei": "./src/nuclei.ts",
     "./data/release": "./data/release.json",
     "./knowledge": "./src/knowledge.ts",
+    "./reference": "./src/reference.ts",
     ".": "./src/index.ts"
   },
   "scripts": {
