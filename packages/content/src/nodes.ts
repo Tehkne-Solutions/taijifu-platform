@@ -1,16 +1,17 @@
 import whiteConfig from "../data/white-belt-content.json";
 import yellowConfig from "../data/yellow-belt-content.json";
 import orangeConfig from "../data/orange-belt-content.json";
+import redConfig from "../data/red-belt-content.json";
 import { nuclei } from "@taijifu/canon";
 const safety="Interrompa a atividade sempre que houver Tap, comando de parada, perda de controle ou condição insegura.";
 const evidencePrompt="Registre uma observação curta: o que você percebeu, o que controlou e o que precisa praticar novamente?";
 const safetyGate="Executar apenas dentro do nível de contato, intensidade e supervisão adequados.";
-const config=[...whiteConfig,...yellowConfig,...orangeConfig];
+const config=[...whiteConfig,...yellowConfig,...orangeConfig,...redConfig];
 const nodes:any[]=[];
 for(const item of config){
   const n=nuclei.find(x=>x.id===item.id)!;
   const common={canonicalEntityId:n.id,audience:["adult"],difficulty:"foundation",status:"published",version:"1.0.0",beltId:n.beltId,pathId:n.pathId};
-  nodes.push({id:`CONTENT-${n.code}-LESSON`,...common,type:"lesson",title:`${n.code} · ${n.name}`,summary:item.summary,durationMinutes:12,body:{learningObjective:item.summary,sections:[{kind:"concept",title:"Por que importa",text:item.summary},{kind:"principle",title:"Regra de prática",text:"Priorize controle, percepção, compreensão mecânica e função antes de velocidade ou intensidade."},{kind:"safety",title:"Safety",text:safety}]}});
+  nodes.push({id:`CONTENT-${n.code}-LESSON`,...common,type:"lesson",title:`${n.code} · ${n.name}`,summary:item.summary,durationMinutes:12,body:{learningObjective:item.summary,sections:[{kind:"concept",title:"Por que importa",text:item.summary},{kind:"principle",title:"Regra de prática",text:"Priorize controle, proporcionalidade, função e capacidade de parar antes de velocidade ou intensidade."},{kind:"safety",title:"Safety",text:safety}]}});
   nodes.push({id:`CONTENT-${n.code}-QUIZ`,...common,type:"quiz",title:`Checkpoint · ${n.code}`,summary:`Verificação conceitual do Núcleo ${n.code}.`,durationMinutes:4,questions:[{id:`CONTENT-${n.code}-QUIZ-Q1`,prompt:`Qual é o foco principal de ${n.name}?`,kind:"single-choice",options:[item.summary,"Executar com máxima intensidade","Colecionar o maior número de técnicas"],correctIndex:0},{id:`CONTENT-${n.code}-QUIZ-Q2`,prompt:"O que prevalece se a atividade perder condição segura?",kind:"single-choice",options:["Continuar até terminar","Safety e parada","A graduação mais alta decide"],correctIndex:1}]});
   nodes.push({id:`CONTENT-${n.code}-GUIDED`,...common,type:"guided-practice",title:`Prática guiada · ${n.code}`,summary:item.practice,durationMinutes:10,practice:{instruction:item.practice,evidencePrompt,safetyGate}});
 }
