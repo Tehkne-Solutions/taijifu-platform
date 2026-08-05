@@ -1,0 +1,3 @@
+import { BeltTraversalPanel } from "../../../components/belt-runtime-ui";
+import { greenConfig } from "../../../components/green-runtime";
+export default function GreenTraversalPage(){return <main><nav className="breadcrumb"><a href="/">Academy</a><span>/</span><a href="/belt/verde">Faixa Verde</a><span>/</span><strong>Travessia</strong></nav><section className="lesson-hero compact-hero"><span className="eyebrow">Avaliação integrativa</span><h1>Travessia Verde.</h1><p className="lead">A Travessia reúne aprendizagem e evidência dos quatro Caminhos. O App registra submissão; a promoção para Ciano permanece dependente de avaliação autorizada.</p></section><section className="section"><BeltTraversalPanel config={greenConfig}/></section></main>;}
