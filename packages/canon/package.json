@@ -9,6 +9,7 @@
     "./data/paths": "./data/paths.json",
     "./data/nuclei": "./src/nuclei.ts",
     "./data/release": "./data/release.json",
+    "./knowledge": "./src/knowledge.ts",
     ".": "./src/index.ts"
   },
   "scripts": {
