@@ -1,21 +1,17 @@
 import fs from "node:fs";
-import os from "node:os";
 import path from "node:path";
-import { pathToFileURL } from "node:url";
-import ts from "typescript";
 
 const root = process.cwd();
 const readJson = (p) => JSON.parse(fs.readFileSync(path.join(root, p), "utf8"));
 
-async function loadTsConstants(relativePath) {
-  const source = fs.readFileSync(path.join(root, relativePath), "utf8");
-  const js = ts.transpileModule(source, {
-    compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2022 },
-  }).outputText;
-  const temp = path.join(os.tmpdir(), `taijifu-${path.basename(relativePath, ".ts")}-${process.pid}-${Date.now()}.mjs`);
-  fs.writeFileSync(temp, js, "utf8");
-  try { return await import(pathToFileURL(temp).href); }
-  finally { fs.rmSync(temp, { force: true }); }
+function loadTrustedTsConstants(relativePath, names) {
+  let source = fs.readFileSync(path.join(root, relativePath), "utf8");
+  source = source
+    .replace(/^export type .*$/gm, "")
+    .replace(/\s+as const/g, "")
+    .replace(/export const /g, "const ");
+  const factory = new Function(`${source}\nreturn { ${names.join(", ")} };`);
+  return factory();
 }
 
 const bases = readJson("packages/canon/data/bases.json");
@@ -23,8 +19,8 @@ const belts = readJson("packages/canon/data/belts.json");
 const paths = readJson("packages/canon/data/paths.json");
 const nucleusNames = readJson("packages/canon/data/nuclei.json");
 const release = readJson("packages/canon/data/release.json");
-const knowledge = await loadTsConstants("packages/canon/src/knowledge.ts");
-const reference = await loadTsConstants("packages/canon/src/reference.ts");
+const knowledge = loadTrustedTsConstants("packages/canon/src/knowledge.ts", ["manifestoValues", "principles", "knowledgePages", "historyMilestones"]);
+const reference = loadTrustedTsConstants("packages/canon/src/reference.ts", ["baseDetails", "provenanceTypes", "internalSources", "claimTypes"]);
 
 const nuclei = nucleusNames.map((name, index) => {
   const order = index + 1;
