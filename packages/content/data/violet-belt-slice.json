@@ -1,0 +1,8 @@
+{
+  "id":"VIOLET-BELT-VS1",
+  "beltId":"BELT-VIOLET",
+  "function":"Aprofundar",
+  "paths":["PATH-C25","PATH-C26","PATH-C27","PATH-C28"],
+  "nuclei":["NUC-N097","NUC-N098","NUC-N099","NUC-N100","NUC-N101","NUC-N102","NUC-N103","NUC-N104","NUC-N105","NUC-N106","NUC-N107","NUC-N108","NUC-N109","NUC-N110","NUC-N111","NUC-N112"],
+  "nextBeltId":"BELT-BROWN"
+}
