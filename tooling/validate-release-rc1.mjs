@@ -23,7 +23,7 @@ assert(!canonSource.includes("PATH-C33")&&!canonSource.includes("NUC-N129"),"for
 assert(provisioning.includes('name: "taijifu-site", rootDirectory: "apps/web"'),"site provisioning contract missing");
 assert(provisioning.includes('name: "taijifu-academy", rootDirectory: "apps/academy"'),"academy provisioning contract missing");
 assert(!provisioning.includes("taijifu-masters"),"external product reference detected in provisioner");
-assert(readiness.includes("clerkConfigured")&&readiness.includes("demoAuthDisabled"),"production readiness must enforce Clerk and demo-off");
+assert(readiness.includes("clerkPublishableKeyConfigured")&&readiness.includes("clerkSecretKeyConfigured")&&readiness.includes("demoAuthDisabled"),"production readiness must enforce Clerk and demo-off");
 assert(auth.includes("TAIJIFU_AUTH_BRIDGE_SECRET")&&auth.includes("timingSafeEqual"),"signed auth bridge contract missing");
 assert(packageJson.scripts["release:rc1:validate"]==="node tooling/validate-release-rc1.mjs","release validator script missing");
 console.log("TAIJIFU_RC1_RELEASE_VALIDATION=PASS");
