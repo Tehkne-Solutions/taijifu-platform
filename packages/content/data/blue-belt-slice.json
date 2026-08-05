@@ -1,0 +1,8 @@
+{
+  "id":"BLUE-BELT-VS1",
+  "beltId":"BELT-BLUE",
+  "function":"Sustentar",
+  "paths":["PATH-C21","PATH-C22","PATH-C23","PATH-C24"],
+  "nuclei":["NUC-N081","NUC-N082","NUC-N083","NUC-N084","NUC-N085","NUC-N086","NUC-N087","NUC-N088","NUC-N089","NUC-N090","NUC-N091","NUC-N092","NUC-N093","NUC-N094","NUC-N095","NUC-N096"],
+  "nextBeltId":"BELT-VIOLET"
+}

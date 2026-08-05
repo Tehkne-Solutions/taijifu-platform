@@ -1,7 +1,7 @@
 {
   "name": "taijifu-platform",
   "private": true,
-  "version": "1.5.0",
+  "version": "1.6.0",
   "packageManager": "pnpm@10.15.0",
   "engines": {"node": ">=22 <23"},
   "scripts": {
@@ -14,7 +14,7 @@
     "test": "turbo test",
     "content:validate": "node packages/content/scripts/validate.mjs",
     "content:summary": "node packages/content/scripts/summary.mjs",
-    "validate": "npm run canon:validate && npm run content:validate && npm run evidence:validate && npm run ui:validate && npm run p45:validate && npm run yellow:validate && npm run orange:validate && npm run red:validate && npm run green:validate && npm run cyan:validate && npm run p5:validate && npm run p6:validate && npm run p6:mvp:validate && npm run ai:validate && npm run p7:validate && npm run p8:validate",
+    "validate": "npm run canon:validate && npm run content:validate && npm run evidence:validate && npm run ui:validate && npm run p45:validate && npm run yellow:validate && npm run orange:validate && npm run red:validate && npm run green:validate && npm run cyan:validate && npm run blue:validate && npm run p5:validate && npm run p6:validate && npm run p6:mvp:validate && npm run ai:validate && npm run p7:validate && npm run p8:validate",
     "ui:validate": "node tooling/validate-ui.mjs",
     "evidence:validate": "node packages/evidence/scripts/validate.mjs",
     "p45:validate": "node tooling/validate-p45.mjs",
@@ -23,6 +23,7 @@
     "red:validate": "node tooling/validate-red-belt.mjs",
     "green:validate": "node tooling/validate-green-belt.mjs",
     "cyan:validate": "node tooling/validate-cyan-belt.mjs",
+    "blue:validate": "node tooling/validate-blue-belt.mjs",
     "p5:validate": "node tooling/validate-p5.mjs",
     "p6:validate": "node tooling/validate-p6.mjs",
     "p6:mvp:validate": "node tooling/validate-p6-mvp.mjs",
