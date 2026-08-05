@@ -13,6 +13,7 @@
     "./reference": "./src/reference.ts",
     "./graduation": "./src/graduation.ts",
     "./method": "./src/method.ts",
+    "./pfi": "./src/pfi.ts",
     ".": "./src/index.ts"
   },
   "scripts": {
