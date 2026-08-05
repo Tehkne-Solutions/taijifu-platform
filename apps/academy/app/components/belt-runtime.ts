@@ -1,5 +1,3 @@
-"use client";
-
 import type { BeltLocalState, EvidenceKind, EvidenceRecord, LearningEvent, LearningStep } from "@taijifu/evidence/types";
 
 export type BeltRuntimeConfig={
