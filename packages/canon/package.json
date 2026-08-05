@@ -15,6 +15,7 @@
     "./method": "./src/method.ts",
     "./pfi": "./src/pfi.ts",
     "./science": "./src/science.ts",
+    "./influences": "./src/influences.ts",
     ".": "./src/index.ts"
   },
   "scripts": {
