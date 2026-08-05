@@ -5,7 +5,9 @@ export const dynamic = "force-dynamic";
 export async function GET() {
   const databaseConfigured = isDatabaseConfigured();
   const authBridgeConfigured = Boolean(process.env.TAIJIFU_AUTH_BRIDGE_SECRET);
-  const demoAuthEnabled = process.env.TAIJIFU_ENABLE_DEMO_AUTH === "true";
+  const clerkPublishableKeyConfigured = Boolean(process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY);
+  const clerkSecretKeyConfigured = Boolean(process.env.CLERK_SECRET_KEY);
+  const demoAuthEnabled = process.env.TAIJIFU_ENABLE_DEMO_AUTH === "true" || process.env.TAIJIFU_ALLOW_DEMO_AUTH === "1";
   let databaseReachable = false;
   let databaseError: string | null = null;
 
@@ -18,7 +20,7 @@ export async function GET() {
     }
   }
 
-  const ready = databaseConfigured && databaseReachable && authBridgeConfigured && !demoAuthEnabled;
+  const ready = databaseConfigured && databaseReachable && authBridgeConfigured && clerkPublishableKeyConfigured && clerkSecretKeyConfigured && !demoAuthEnabled;
   return Response.json({
     service: "taijifu-academy",
     status: ready ? "ready" : "not-ready",
@@ -26,6 +28,8 @@ export async function GET() {
       databaseConfigured,
       databaseReachable,
       authBridgeConfigured,
+      clerkPublishableKeyConfigured,
+      clerkSecretKeyConfigured,
       demoAuthDisabled: !demoAuthEnabled,
     },
     databaseError,
