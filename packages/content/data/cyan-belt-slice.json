@@ -1,0 +1,8 @@
+{
+  "id":"CYAN-BELT-VS1",
+  "beltId":"BELT-CYAN",
+  "function":"Expandir",
+  "paths":["PATH-C17","PATH-C18","PATH-C19","PATH-C20"],
+  "nuclei":["NUC-N065","NUC-N066","NUC-N067","NUC-N068","NUC-N069","NUC-N070","NUC-N071","NUC-N072","NUC-N073","NUC-N074","NUC-N075","NUC-N076","NUC-N077","NUC-N078","NUC-N079","NUC-N080"],
+  "nextBeltId":"BELT-BLUE"
+}
