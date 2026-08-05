@@ -1,6 +1,6 @@
 {
   "name": "@taijifu/academy",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -11,6 +11,7 @@
     "next": "^16.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "@clerk/nextjs": "^7.0.0",
     "@taijifu/canon": "workspace:*",
     "@taijifu/content": "workspace:*",
     "@taijifu/evidence": "workspace:*",
