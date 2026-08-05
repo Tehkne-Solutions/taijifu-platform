@@ -4,12 +4,12 @@ import { createBeltRuntime } from "./belt-runtime";
 import { whiteConfig } from "./white-runtime";
 
 const runtime=createBeltRuntime(whiteConfig);
+let hydrationStarted=false;
 export const STORAGE_KEY=runtime.storageKey;
 export const WHITE_NUCLEUS_IDS=runtime.nucleusIds;
 export const WHITE_PATH_IDS=whiteConfig.pathIds;
 export const emptyState=runtime.emptyState;
-export const hydrateWhiteState=runtime.hydrate;
-export const readWhiteState=runtime.read;
+export function readWhiteState():WhiteBeltLocalState{if(typeof window!=="undefined"&&!hydrationStarted){hydrationStarted=true;void runtime.hydrate();}return runtime.read();}
 export const writeWhiteState=(state:WhiteBeltLocalState)=>runtime.write(state);
 export const subscribeWhiteState=runtime.subscribe;
 export const completeLearningStep=(nucleusId:string,step:LearningStep)=>runtime.completeStep(nucleusId,step);
