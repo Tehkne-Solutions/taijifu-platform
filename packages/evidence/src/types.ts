@@ -44,3 +44,4 @@ export interface BeltLocalState {
 
 export type WhiteBeltLocalState = BeltLocalState;
 export type YellowBeltLocalState = BeltLocalState;
+export type OrangeBeltLocalState = BeltLocalState;
