@@ -12,6 +12,7 @@
     "./knowledge": "./src/knowledge.ts",
     "./reference": "./src/reference.ts",
     "./graduation": "./src/graduation.ts",
+    "./method": "./src/method.ts",
     ".": "./src/index.ts"
   },
   "scripts": {
