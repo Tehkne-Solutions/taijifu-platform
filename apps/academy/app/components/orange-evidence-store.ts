@@ -1,22 +1,21 @@
 "use client";
+import type { EvidenceKind, EvidenceRecord, LearningStep, OrangeBeltLocalState } from "@taijifu/evidence/types";
+import { createBeltRuntime } from "./belt-runtime";
+import { orangeConfig } from "./orange-runtime";
 
-import type { EvidenceKind, EvidenceRecord, LearningEvent, LearningStep, OrangeBeltLocalState } from "@taijifu/evidence/types";
-
-export const ORANGE_STORAGE_KEY = "taijifu:orange-belt-state:v2";
-const CHANGE_EVENT = "taijifu-orange-state";
-export const ORANGE_NUCLEUS_IDS = Array.from({ length: 12 }, (_, i) => `NUC-N${String(i + 25).padStart(3, "0")}`);
-export const ORANGE_PATH_IDS = ["PATH-C07", "PATH-C08", "PATH-C09"] as const;
-
-export const emptyOrangeState = (): OrangeBeltLocalState => ({schemaVersion:2,progress:{},evidence:[],pathCheckpoints:{},traversal:{status:"locked"},events:[]});
-function event(type:LearningEvent["type"],detail:string,canonicalEntityId?:string):LearningEvent{return{id:crypto.randomUUID(),createdAt:new Date().toISOString(),type,canonicalEntityId,detail};}
-
-export function readOrangeState():OrangeBeltLocalState{if(typeof window==="undefined")return emptyOrangeState();const raw=window.localStorage.getItem(ORANGE_STORAGE_KEY);if(!raw)return emptyOrangeState();try{const parsed=JSON.parse(raw) as OrangeBeltLocalState;return parsed.schemaVersion===2?parsed:emptyOrangeState();}catch{return emptyOrangeState();}}
-export function writeOrangeState(state:OrangeBeltLocalState){window.localStorage.setItem(ORANGE_STORAGE_KEY,JSON.stringify(state));window.dispatchEvent(new CustomEvent(CHANGE_EVENT));}
-export function subscribeOrangeState(callback:()=>void){window.addEventListener("storage",callback);window.addEventListener(CHANGE_EVENT,callback as EventListener);return()=>{window.removeEventListener("storage",callback);window.removeEventListener(CHANGE_EVENT,callback as EventListener);};}
-export function completeOrangeLearningStep(nucleusId:string,step:LearningStep){const state=readOrangeState();const current=state.progress[nucleusId]??{};if(current[step])return state;state.progress[nucleusId]={...current,[step]:true};state.events.unshift(event("step-completed",`${nucleusId}: ${step}`,nucleusId));writeOrangeState(state);return state;}
-export function addOrangeEvidence(input:{kind:EvidenceKind;canonicalEntityId:string;body:string;pathId?:string;metadata?:EvidenceRecord["metadata"];status?:EvidenceRecord["status"]}){const state=readOrangeState();const record:EvidenceRecord={id:crypto.randomUUID(),createdAt:new Date().toISOString(),kind:input.kind,status:input.status??"recorded",canonicalEntityId:input.canonicalEntityId,pathId:input.pathId,beltId:"BELT-ORANGE",body:input.body.trim(),metadata:input.metadata};state.evidence.unshift(record);state.events.unshift(event("evidence-recorded",`${input.kind}: ${input.canonicalEntityId}`,input.canonicalEntityId));writeOrangeState(state);return record;}
-export function isOrangeNucleusComplete(state:OrangeBeltLocalState,nucleusId:string){const row=state.progress[nucleusId]??{};return Boolean(row.lesson&&row.practice&&row.quiz);}
-export function orangePathNucleusIds(pathId:string){const index=ORANGE_PATH_IDS.indexOf(pathId as (typeof ORANGE_PATH_IDS)[number]);if(index<0)return[];return ORANGE_NUCLEUS_IDS.slice(index*4,index*4+4);}
-export function completeOrangePathCheckpoint(pathId:string,reflection:string){const state=readOrangeState();const ids=orangePathNucleusIds(pathId);if(!ids.every(id=>isOrangeNucleusComplete(state,id)))return{ok:false as const,reason:"learning-incomplete"};if(!reflection.trim())return{ok:false as const,reason:"reflection-required"};state.pathCheckpoints[pathId]=true;state.evidence.unshift({id:crypto.randomUUID(),createdAt:new Date().toISOString(),kind:"path-checkpoint",status:"recorded",canonicalEntityId:pathId,pathId,beltId:"BELT-ORANGE",body:reflection.trim()});state.events.unshift(event("path-checkpoint-completed",`${pathId}: checkpoint registrado`,pathId));if(ORANGE_PATH_IDS.every(id=>state.pathCheckpoints[id])&&ORANGE_NUCLEUS_IDS.every(id=>isOrangeNucleusComplete(state,id)))state.traversal.status="ready";writeOrangeState(state);return{ok:true as const};}
-export function submitOrangeTraversal(reflection:string){const state=readOrangeState();const ready=ORANGE_PATH_IDS.every(id=>state.pathCheckpoints[id])&&ORANGE_NUCLEUS_IDS.every(id=>isOrangeNucleusComplete(state,id));if(!ready)return{ok:false as const,reason:"requirements-incomplete"};if(!reflection.trim())return{ok:false as const,reason:"reflection-required"};const submittedAt=new Date().toISOString();state.traversal={status:"submitted",submittedAt,reflection:reflection.trim()};state.evidence.unshift({id:crypto.randomUUID(),createdAt:submittedAt,kind:"traversal-submission",status:"submitted",canonicalEntityId:"BELT-ORANGE",beltId:"BELT-ORANGE",body:reflection.trim(),metadata:{promotionGranted:false,nextBelt:"BELT-RED",decisionRequired:true}});state.events.unshift(event("traversal-submitted","Travessia Laranja enviada para futura avaliação. Nenhuma promoção concedida.","BELT-ORANGE"));writeOrangeState(state);return{ok:true as const};}
-export function resetOrangeDemo(){const state=emptyOrangeState();state.events.push(event("demo-reset","Demo da Faixa Laranja reiniciada."));writeOrangeState(state);}
+const runtime=createBeltRuntime(orangeConfig);
+let hydrationStarted=false;
+export const ORANGE_STORAGE_KEY=runtime.storageKey;
+export const ORANGE_NUCLEUS_IDS=runtime.nucleusIds;
+export const ORANGE_PATH_IDS=orangeConfig.pathIds;
+export const emptyOrangeState=runtime.emptyState;
+export function readOrangeState():OrangeBeltLocalState{if(typeof window!=="undefined"&&!hydrationStarted){hydrationStarted=true;void runtime.hydrate();}return runtime.read();}
+export const writeOrangeState=(state:OrangeBeltLocalState)=>runtime.write(state);
+export const subscribeOrangeState=runtime.subscribe;
+export const completeOrangeLearningStep=(nucleusId:string,step:LearningStep)=>runtime.completeStep(nucleusId,step);
+export const addOrangeEvidence=(input:{kind:EvidenceKind;canonicalEntityId:string;body:string;pathId?:string;metadata?:EvidenceRecord["metadata"];status?:EvidenceRecord["status"]})=>runtime.addEvidence(input);
+export const isOrangeNucleusComplete=(state:OrangeBeltLocalState,nucleusId:string)=>runtime.isNucleusComplete(state,nucleusId);
+export const orangePathNucleusIds=(pathId:string)=>runtime.pathNucleusIds(pathId);
+export const completeOrangePathCheckpoint=(pathId:string,reflection:string)=>runtime.completePathCheckpoint(pathId,reflection);
+export const submitOrangeTraversal=(reflection:string)=>runtime.submitTraversal(reflection);
+export const resetOrangeDemo=runtime.reset;

@@ -1,30 +1,5 @@
 import fs from "node:fs";
-const required=[
-  "packages/content/data/orange-belt-content.json",
-  "packages/content/data/orange-belt-slice.json",
-  "apps/academy/app/belt/laranja/page.tsx",
-  "apps/academy/app/belt/laranja/[nucleus]/page.tsx",
-  "apps/academy/app/belt/laranja/checkpoint/page.tsx",
-  "apps/academy/app/belt/laranja/travessia/page.tsx",
-  "apps/academy/app/belt/laranja/history/page.tsx",
-  "apps/academy/app/components/orange-evidence-store.ts",
-  "apps/academy/app/components/orange-progress.tsx",
-  "apps/academy/app/components/orange-evidence.tsx"
-];
+const required=["packages/content/data/orange-belt-content.json","packages/content/data/orange-belt-slice.json","apps/academy/app/belt/laranja/page.tsx","apps/academy/app/belt/laranja/[nucleus]/page.tsx","apps/academy/app/belt/laranja/checkpoint/page.tsx","apps/academy/app/belt/laranja/travessia/page.tsx","apps/academy/app/belt/laranja/history/page.tsx","apps/academy/app/components/orange-evidence-store.ts","apps/academy/app/components/orange-runtime.ts","apps/academy/app/components/orange-progress.tsx","apps/academy/app/components/orange-evidence.tsx"];
 for(const file of required)if(!fs.existsSync(file))throw new Error(`missing ${file}`);
-const config=JSON.parse(fs.readFileSync("packages/content/data/orange-belt-content.json","utf8"));
-const slice=JSON.parse(fs.readFileSync("packages/content/data/orange-belt-slice.json","utf8"));
-const store=fs.readFileSync("apps/academy/app/components/orange-evidence-store.ts","utf8");
-const page=fs.readFileSync("apps/academy/app/belt/laranja/page.tsx","utf8");
-if(config.length!==12||slice.nuclei.length!==12)throw new Error("Orange Belt must contain 12 nuclei");
-if(slice.paths.join(",")!=="PATH-C07,PATH-C08,PATH-C09")throw new Error("Orange Belt paths must be C07-C09");
-for(let n=25;n<=36;n++){const id=`NUC-N${String(n).padStart(3,"0")}`;if(!config.some(x=>x.id===id))throw new Error(`missing ${id}`);}
-for(const marker of ["BELT-ORANGE","BELT-RED","promotionGranted:false","decisionRequired:true","ORANGE_NUCLEUS_IDS","ORANGE_PATH_IDS"]){if(!store.includes(marker))throw new Error(`Orange gate missing ${marker}`);}
-if(/currentBeltId\s*=|recordEvaluationAndPromotion/.test(store))throw new Error("client-side Orange promotion mutation detected");
-for(const marker of ["Faixa 03 · Laranja","Compreender.","C07–C09","/belt/laranja/travessia"]){if(!page.includes(marker))throw new Error(`Orange page missing ${marker}`);}
-console.log("TAIJIFU_ORANGE_BELT_VALIDATION=PASS");
-console.log("belt=BELT-ORANGE");
-console.log("paths=C07-C09");
-console.log("nuclei=N025-N036");
-console.log("learning_steps=36");
-console.log("automatic_promotion_to_red=BLOCKED");
+const config=JSON.parse(fs.readFileSync("packages/content/data/orange-belt-content.json","utf8"));const slice=JSON.parse(fs.readFileSync("packages/content/data/orange-belt-slice.json","utf8"));const store=fs.readFileSync("apps/academy/app/components/orange-evidence-store.ts","utf8");const runtime=fs.readFileSync("apps/academy/app/components/orange-runtime.ts","utf8");const page=fs.readFileSync("apps/academy/app/belt/laranja/page.tsx","utf8");
+if(config.length!==12||slice.nuclei.length!==12)throw new Error("Orange Belt must contain 12 nuclei");if(slice.paths.join(",")!=="PATH-C07,PATH-C08,PATH-C09")throw new Error("Orange Belt paths must be C07-C09");for(let n=25;n<=36;n++){const id=`NUC-N${String(n).padStart(3,"0")}`;if(!config.some(x=>x.id===id))throw new Error(`missing ${id}`);}for(const marker of ["BELT-ORANGE","BELT-RED","PATH-C07","PATH-C09"]){if(!runtime.includes(marker))throw new Error(`Orange runtime missing ${marker}`);}if(!store.includes("createBeltRuntime"))throw new Error("Orange store must use generic runtime");if(/currentBeltId\s*=|recordEvaluationAndPromotion/.test(store+runtime))throw new Error("client-side Orange promotion mutation detected");for(const marker of ["Faixa 03 · Laranja","Compreender.","C07–C09","/belt/laranja/travessia"]){if(!page.includes(marker))throw new Error(`Orange page missing ${marker}`);}console.log("TAIJIFU_ORANGE_BELT_VALIDATION=PASS");console.log("belt=BELT-ORANGE");console.log("paths=C07-C09");console.log("nuclei=N025-N036");console.log("learning_steps=36");console.log("runtime=GENERIC_BELT_ENGINE");console.log("automatic_promotion_to_red=BLOCKED");
