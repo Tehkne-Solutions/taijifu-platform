@@ -176,7 +176,7 @@ if (JSON.stringify(integralBeltIds) !== JSON.stringify(belts.map((b)=>b.id))) fa
 if (graduation.graduationSystem.physicalBelt.body !== "preta") failures.push("physical_belt_body_must_be_black");
 if (!graduation.graduationSystem.physicalBelt.longitudinalLines.toLowerCase().includes("dourad")) failures.push("gold_lines_missing");
 if (!pfi.pfiSystem.governance.some((x)=>x.includes("não concede faixa"))) failures.push("pfi_must_not_grant_belt");
-if (!science.kineticArts.integrationRules.some((x)=>x.includes("não ser incorporada automaticamente"))) failures.push("external_reference_must_not_auto_enter_canon");
+if (!science.kineticArts.integrationRules.some((x)=>x.includes("sem ser incorporada automaticamente"))) failures.push("external_reference_must_not_auto_enter_canon");
 if (!document.includes("Tehkné Solutions")) failures.push("signature_missing");
 
 if (process.argv.includes("--check")) {
