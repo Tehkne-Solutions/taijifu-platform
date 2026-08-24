@@ -3,10 +3,11 @@ const teamId = process.env.VERCEL_TEAM_ID;
 const dryRun = process.env.TAIJIFU_VERCEL_APPLY !== "true";
 
 if (!token) throw new Error("VERCEL_TOKEN is required");
-//if (!teamId) throw new Error("VERCEL_TEAM_ID is required");
 
 const api = "https://api.vercel.com";
 const repo = "Tehkne-Solutions/taijifu-platform";
+const teamQuery = teamId ? `?teamId=${encodeURIComponent(teamId)}` : "";
+
 const projects = [
   { name: "taijifu-site", rootDirectory: "apps/web" },
   { name: "taijifu-academy", rootDirectory: "apps/academy" },
@@ -32,7 +33,7 @@ async function request(path, init = {}) {
 
 async function getProject(name) {
   try {
-    return await request(`/v9/projects/${encodeURIComponent(name)}?teamId=${encodeURIComponent(teamId)}`);
+    return await request(`/v9/projects/${encodeURIComponent(name)}${teamQuery}`);
   } catch (error) {
     if (String(error.message).includes("404") || String(error.message).toLowerCase().includes("not found")) return null;
     throw error;
@@ -46,7 +47,7 @@ async function createProject(project) {
     rootDirectory: project.rootDirectory,
     gitRepository: { type: "github", repo },
   };
-  return request(`/v11/projects?teamId=${encodeURIComponent(teamId)}`, {
+  return request(`/v11/projects${teamQuery}`, {
     method: "POST",
     body: JSON.stringify(body),
   });
