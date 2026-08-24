@@ -12,8 +12,7 @@ on:
 permissions:
   contents: read
 
-env:
-  VERCEL_TEAM_ID: team_GAFmMllTKaWx5iGEa8sTZJ0T
+
 
 jobs:
   provision:
