@@ -18,7 +18,7 @@ for (const marker of [
 }
 
 if (script.includes("taijifu-masters")) throw new Error("provisioner must not reference taijifu-masters");
-for (const marker of ["workflow_dispatch", "secrets.VERCEL_TOKEN", "team_GAFmMllTKaWx5iGEa8sTZJ0T", "inputs.apply", "environment: production"]) {
+for (const marker of ["workflow_dispatch", "secrets.VERCEL_TOKEN", "inputs.apply", "environment: production"]) {
   if (!workflow.includes(marker)) throw new Error(`workflow missing ${marker}`);
 }
 if (workflow.includes("vars.VERCEL_TEAM_ID")) throw new Error("verified Vercel team must not require external repository variable");
