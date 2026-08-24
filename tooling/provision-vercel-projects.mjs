@@ -3,7 +3,7 @@ const teamId = process.env.VERCEL_TEAM_ID;
 const dryRun = process.env.TAIJIFU_VERCEL_APPLY !== "true";
 
 if (!token) throw new Error("VERCEL_TOKEN is required");
-if (!teamId) throw new Error("VERCEL_TEAM_ID is required");
+//if (!teamId) throw new Error("VERCEL_TEAM_ID is required");
 
 const api = "https://api.vercel.com";
 const repo = "Tehkne-Solutions/taijifu-platform";
